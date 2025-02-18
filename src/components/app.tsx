@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { motion, useMotionValue } from "framer-motion";
 
 const imgsPath = [
@@ -15,8 +15,9 @@ const imgsPath = [
 export default function App() {
 
     return (
-        <main className="relative min-h-screen px-[5vw] py-8 overflow-hidden bg-primary-bg">
-            <MainGallery />
+        <main className="relative min-h-screen py-8 overflow-hidden bg-primary-bg">
+            <div className="px-[25vw]"> <MainGallery />
+            </div>
         </main>
     )
 }
@@ -82,7 +83,7 @@ export function MainGallery() {
                     right: 0,
                 }}
                 animate={{
-                    translateX: `-${carouselIndex * 55.5}%`,
+                    translateX: `-${carouselIndex * 100}%`,
                 }}
                 onDragStart={onDragStart}
                 onDragEnd={onDragEnd}
@@ -103,23 +104,23 @@ export function CarouselImage({ carouselIndex }: { carouselIndex: number }) {
     return (
         <>
             {imgsPath.map((path, index) => <motion.div
-                    key={index}
-                    style={{
-                        backgroundImage: `url(${path})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                    }}
-                    animate={{
-                        scale: carouselIndex === index ? 0.95 : 0.85,
-                    }}
-                    transition={{
-                        type: "spring",
-                        mass: 3,
-                        stiffness: 400,
-                        damping: 50,
-                    }}
-                    className="aspect-video shrink-0 w-[50vw] rounded-xl bg-cyan-50 object-cover"
-                />
+                key={index}
+                style={{
+                    backgroundImage: `url(${path})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                }}
+                animate={{
+                    scale: carouselIndex === index ? 0.95 : 0.85,
+                }}
+                transition={{
+                    type: "spring",
+                    mass: 3,
+                    stiffness: 400,
+                    damping: 50,
+                }}
+                className="aspect-video shrink-0 w-[50vw] rounded-xl bg-cyan-50 object-cover"
+            />
             )}
         </>
     )
