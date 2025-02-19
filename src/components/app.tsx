@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { motion, useMotionValue, useMotionValueEvent } from "framer-motion";
+import { NavLink, Route, Routes, useParams } from "react-router-dom";
 
 const imgsPath = [
     "/public/sprint-3-images/cover-trains.jpg",
@@ -13,12 +14,21 @@ const imgsPath = [
 ];
 
 export default function App() {
-
     return (
         <main className="relative min-h-screen py-8 overflow-hidden bg-primary-bg">
-            <div className="px-[25vw]"> <MainGallery />
-            </div>
+            <Routes>
+                <Route path="/" element={<Home />}></Route>
+                <Route path="/about-page/:index" element={<AboutPage />} />
+            </Routes>
         </main>
+    )
+}
+
+export function Home() {
+    return (
+        <div className="px-[25vw]">
+                <MainGallery />
+        </div>
     )
 }
 
@@ -106,7 +116,6 @@ export function MainGallery() {
             >
                 <CarouselImage carouselIndex={carouselIndex} />
             </motion.div>
-
             <CarouselDots carouselIndex={carouselIndex} setCarouselIndex={setCarouselIndex} />
         </>
     );
@@ -118,7 +127,7 @@ export function CarouselImage({ carouselIndex }: { carouselIndex: number }) {
             {imgsPath.map((path, index) => <motion.div
                 key={index}
                 style={{
-                    backgroundImage: `url(${path})`,
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${path})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                 }}
@@ -133,6 +142,15 @@ export function CarouselImage({ carouselIndex }: { carouselIndex: number }) {
                 }}
                 className="aspect-video shrink-0 w-[50vw] rounded-xl bg-cyan-50 object-cover"
             >
+                <div className="absolute inset-0 z-10 flex justify-center items-center hover-events-none">
+                    <NavLink
+                        to={`/about-page/${index}`}
+                        onPointerDownCapture={(e) => e.stopPropagation()}
+                        className="text-4xl text-white bold hover:cursor-pointer"
+                    >
+                        About me
+                    </NavLink>
+                </div>
                 <CarouselEdges />
             </motion.div>
             )}
@@ -174,3 +192,12 @@ export function CarouselEdges() {
         <div className="pointer-events-none rounded-xl absolute bottom-0 right-0 top-0 w-[10vw] max-w-[100px] bg-gradient-to-l from-neutral-950/50 to-neutral-950/0" />
     </>
 }
+
+export function AboutPage() {
+    const { index } = useParams();
+    return (
+        <div className="text-center text-white">
+            <h1 className="text-4xl">About Page {index}</h1>
+        </div>
+    )
+} 
