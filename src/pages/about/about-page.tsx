@@ -38,12 +38,12 @@ export default function AboutPage() {
                 <div className="mt-2">
                     <span className="mr-1 text-neutral-400">URL:</span><br />
                     <a
-                        href="https://park-kosa.ru"
+                        href={currentData.url.adress}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-neutral-200 hover:underline"
                     >
-                        park-kosa.ru
+                        {currentData.url.name}
                     </a>
                 </div>
                 <Text currentData={currentData} />
