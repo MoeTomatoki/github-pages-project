@@ -2,17 +2,27 @@ import clsx from "clsx";
 import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { motion, useMotionValue, useMotionValueEvent } from "framer-motion";
 import { NavLink } from "react-router-dom";
-import ShadowEdges from "../../ui/shadow-edges";
+import { ShadowEdges } from "../../shared/ui/index";
 
-import db from "../../../db.json";
-import { Data } from "../../ui/types/dataFromServer";
+import db from "../../db.json";
+import { Data } from "../../shared/types/dataFromServer";
 
 const rawData: Data = db.items;
 
-export function MainPage() {
+export default function MainPage() {
     return (
         <div className="px-[25vw]">
-            <MainGallery />
+            <div className="flex justify-center">
+                <div className="mt-4 max-w-xl text-3xl text-neutral-50 text-center">
+                    <h1 className="text-5xl font-bold">
+                        Путешествия по России
+                    </h1>
+                    <h2 className="mt-2">
+                        Настоящая страна не в выпусках новостей, а здесь.
+                    </h2>
+                </div>
+            </div>
+            <MainGallery className="mt-4" />
         </div>
     )
 }
@@ -21,7 +31,7 @@ const DRAG_RANGE = 50;
 const DELAY_INTERVAL = 3000;
 const CAROUSEL_LENGTH = rawData.length;
 
-export function MainGallery() {
+export function MainGallery({ className }: { className: string }) {
     const [carouselIndex, setCarouselIndex] = useState<number>(0);
     const [dragging, setIsDragging] = useState<boolean>(false);
 
@@ -98,7 +108,7 @@ export function MainGallery() {
                 style={{
                     x: dragX,
                 }}
-                className="flex items-center cursor-grab active:cursor-grabbing"
+                className={clsx(className, "flex items-center cursor-grab active:cursor-grabbing")}
             >
                 <CarouselImage carouselIndex={carouselIndex} />
             </motion.div>
@@ -111,12 +121,12 @@ export function CarouselImage({ carouselIndex }: { carouselIndex: number }) {
     return (
         <>
             {rawData.map((data, index) => {
-                const {id, name, imgPath, additionalInfo} = data
+                const { id, name, imgPath, additionalInfo } = data
                 return <motion.div
                     key={id}
                     style={{
                         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${imgPath})`,
-                        backgroundSize: "cover",    
+                        backgroundSize: "cover",
                         backgroundPosition: "center",
                     }}
                     animate={{

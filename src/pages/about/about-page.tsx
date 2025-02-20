@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 
-import db from "../../../db.json";
-import { Data, ObjFromData } from "../../ui/types/dataFromServer";
+import db from "../../db.json";
+import { Data, ObjFromData } from "../../shared/types/dataFromServer";
 
 const rawData: Data = db.items;
 
 
-export function AboutPage() {
+export default function AboutPage() {
     const { index } = useParams();
 
     const currentData = rawData.find((data) => data.id === Number(index))
@@ -70,7 +70,8 @@ function Img({ currentData }: { currentData: ObjFromData }) {
 export function Text({ currentData }: { currentData: ObjFromData }) {
     return (
         <div className="mt-2 text-xl font-thin indent-8 text-justify">
-            {currentData.aboutMe.map((paragraph) => <p
+            {currentData.aboutMe.map((paragraph, index) => <p
+                key={index}
                 className="mt-2"
             >
                 {paragraph}

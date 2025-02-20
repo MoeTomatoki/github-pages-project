@@ -1,1 +1,0 @@
-import { AboutPage } from "./about-page";
