@@ -26,7 +26,8 @@ export default function AboutPage() {
     }
 
     return (
-        <div className="grid grid-cols-2 items-center gap-10 max-w-[900px] mx-auto">
+        <div className="flex min-h-[80vh] items-center">
+            <div className="grid grid-cols-2 items-center gap-10 max-w-[900px] mx-auto">
             <div className="w-full flex justify-center">
                 <div className="flex flex-col text-neutral-50">
                     <div className="text-5xl font-bold w-md text-pretty">{currentData.name}</div>
@@ -47,6 +48,7 @@ export default function AboutPage() {
                 </div>
                 <Text currentData={currentData} />
             </div>
+        </div>
         </div>
     )
 }
