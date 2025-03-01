@@ -4,9 +4,7 @@ export type RawJSON = {
     items: Data;
 }
 
-export type Data = {
-    ObjFromData: ObjFromData[]
-}
+export type Data = Array<ObjFromData>
 
 export type ObjFromData = {
     id: string;

@@ -2,10 +2,9 @@ import clsx from "clsx";
 import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { motion, useMotionValue, useMotionValueEvent } from "framer-motion";
 import { NavLink } from "react-router-dom";
-import { ShadowEdges } from "../../shared/ui/index";
+import { Loader, ShadowEdges } from "../../shared/ui/index";
 
 import { useDataStore } from "../../shared/stores/useDataStore";
-import { Data } from "../../shared/types/dataFromServer";
 
 export default function MainPage() {
     const { items, loading, error, fetchData } = useDataStore();
@@ -25,9 +24,7 @@ export default function MainPage() {
                     </h2>
                 </div>
             </div>
-            {loading && <>Загрузка...</>}
-            {error && <div>{error}</div>}
-            {items && <MainGallery className="mt-4" dataItems={items} />}
+            {<MainGallery className="mt-4" />}
         </div>
     )
 }
@@ -35,7 +32,7 @@ export default function MainPage() {
 const DRAG_RANGE = 50;
 const DELAY_INTERVAL = 3000;
 
-export function MainGallery({ className, dataItems }: { dataItems: Data, className: string }) {
+export function MainGallery({ className }: { className: string }) {
     const [carouselIndex, setCarouselIndex] = useState<number>(0);
     const [dragging, setIsDragging] = useState<boolean>(false);
 
@@ -45,7 +42,9 @@ export function MainGallery({ className, dataItems }: { dataItems: Data, classNa
 
     const dragX = useMotionValue(0);
     const dragXProgress = useMotionValue(0);
-    const CAROUSEL_LENGTH = dataItems.length;
+    const { items: dataItems } = useDataStore.getState();
+
+    const CAROUSEL_LENGTH = dataItems ? dataItems.length : 3;
 
     useMotionValueEvent(dragX, "change", (latest) => {
         if (typeof latest === "number" && dragging) {
@@ -96,7 +95,6 @@ export function MainGallery({ className, dataItems }: { dataItems: Data, classNa
             setCarouselIndex(prev => prev - 1);
         }
     }
-
     return (
         <>
             <motion.div
@@ -115,17 +113,20 @@ export function MainGallery({ className, dataItems }: { dataItems: Data, classNa
                 }}
                 className={clsx(className, "flex items-center cursor-grab active:cursor-grabbing")}
             >
-                <CarouselImage carouselIndex={carouselIndex} dataItems={dataItems} />
+                <CarouselImage carouselIndex={carouselIndex} />
             </motion.div>
-            <CarouselDots dataItems={dataItems} carouselIndex={carouselIndex} setCarouselIndex={setCarouselIndex} />
+            <CarouselDots carouselIndex={carouselIndex} setCarouselIndex={setCarouselIndex} />
         </>
     );
 }
 
-export function CarouselImage({ carouselIndex, dataItems }: { dataItems: Data, carouselIndex: number }) {
+export function CarouselImage({ carouselIndex }: { carouselIndex: number }) {
+    const { items, loading, error } = useDataStore.getState();
+    const dataItems = items === null ? Array(3).fill({}) : items;
+    
     return (
         <>
-            {dataItems.map((data, index) => {
+            {dataItems?.map((data, index) => {
                 const { id, name, imgPath, additionalInfo } = data
                 return <motion.div
                     key={id}
@@ -155,6 +156,8 @@ export function CarouselImage({ carouselIndex, dataItems }: { dataItems: Data, c
                             <h3 className="mt-2 max-w-xs break-words text-neutral-200">{additionalInfo}</h3>
                         </NavLink>
                     </div>
+                    {loading && <Loader />}
+                    {error && <div className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">{error}</div>}
                     <ShadowEdges />
                 </motion.div>
             })}
@@ -165,7 +168,6 @@ export function CarouselImage({ carouselIndex, dataItems }: { dataItems: Data, c
 type DotsProps = {
     carouselIndex: number;
     setCarouselIndex: Dispatch<SetStateAction<number>>;
-    dataItems: Data
 }
 
 const dotRoundFunc = function (index: number, CAROUSEL_LENGTH: number) {
@@ -174,11 +176,13 @@ const dotRoundFunc = function (index: number, CAROUSEL_LENGTH: number) {
     else return " rounded-br-xl rounded-tl-xl"
 }
 
-export function CarouselDots({ dataItems, carouselIndex, setCarouselIndex }: DotsProps) {
-    const CAROUSEL_LENGTH = dataItems.length;
+export function CarouselDots({ carouselIndex, setCarouselIndex }: DotsProps) {
+    const { items } = useDataStore.getState();
+    const dataItems = items === null ? Array(3).fill({}) : items;
+    const CAROUSEL_LENGTH = dataItems ? dataItems.length : 3;
     return (
         <div className="flex w-full justify-center gap-2 mt-4">
-            {dataItems.map((data, index) => {
+            {dataItems?.map((data, index) => {
                 return <button
                     key={data.id}
                     onClick={() => setCarouselIndex(index)}

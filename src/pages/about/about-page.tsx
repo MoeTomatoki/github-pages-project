@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { ObjFromData } from "../../shared/types/dataFromServer";
 import { useDataStore } from "../../shared/stores/useDataStore";
 import { useEffect, useRef } from "react";
+import { Loader } from "../../shared/ui";
 
 export default function AboutPage() {
     const { index } = useParams();
@@ -33,7 +34,7 @@ export default function AboutPage() {
     if (isLoading.current) {
         return (
             <div className="flex min-h-[80vh] items-center justify-center">
-                <span className="text-2xl text-neutral-50">Загрузка...</span>
+                <Loader />
             </div>
         );
     }
@@ -80,12 +81,12 @@ export default function AboutPage() {
     )
 }
 
-function Img({ currentData }: { currentData: ObjFromData }) {
+function Img({ currentData }: { currentData: ObjFromData | null }) {
     return (
         <div className="mt-4 text-neutral-300">
             <div
                 style={{
-                    backgroundImage: `url(${currentData.imgPath})`,
+                    backgroundImage: `url(${currentData?.imgPath})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                 }}
@@ -96,10 +97,10 @@ function Img({ currentData }: { currentData: ObjFromData }) {
     )
 }
 
-export function Text({ currentData }: { currentData: ObjFromData }) {
+export function Text({ currentData }: { currentData: ObjFromData | null}) {
     return (
         <div className="mt-2 text-xl font-thin indent-8 text-justify">
-            {currentData.aboutMe.map((paragraph, index) => <p
+            {currentData?.aboutMe.map((paragraph, index) => <p
                 key={index}
                 className="mt-2"
             >
