@@ -2,14 +2,14 @@ import { create } from "zustand";
 import { Data } from "../types/dataFromServer";
 
 type DataStore = {
-    data: Data | null;
+    items: Data | null;
     loading: boolean;
     error: string | null;
     fetchData: () => Promise<void>;
 }
 
 export const useDataStore = create<DataStore>((set) => ({
-    data: null,
+    items: null,
     loading: false,
     error: null,
     fetchData: async () => {
@@ -17,9 +17,9 @@ export const useDataStore = create<DataStore>((set) => ({
         try {
             const res = await fetch("http://localhost:3000/items");
             const fromJson = await res.json();
-            set({data: fromJson, loading: false})
-        } catch (error) {
-            set({error: "Ошибка при загрузке данных", loading: false})
+            set({items: fromJson, loading: false})
+        } catch (e) {
+            set({error: `Ошибка при загрузке данных: ${e.message}`, loading: false})
         }
     }
 }))

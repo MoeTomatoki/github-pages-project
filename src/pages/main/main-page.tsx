@@ -8,8 +8,8 @@ import { useDataStore } from "../../shared/stores/useDataStore";
 import { Data } from "../../shared/types/dataFromServer";
 
 export default function MainPage() {
-    const { data, loading, error, fetchData } = useDataStore();
-    if (!data && !loading && !error) {
+    const { items, loading, error, fetchData } = useDataStore();
+    if (!items && !loading && !error) {
         fetchData();
     }
 
@@ -27,7 +27,7 @@ export default function MainPage() {
             </div>
             {loading && <>Загрузка...</>}
             {error && <div>{error}</div>}
-            {data && <MainGallery className="mt-4" dataItems={data} />}
+            {items && <MainGallery className="mt-4" dataItems={items} />}
         </div>
     )
 }

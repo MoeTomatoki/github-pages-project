@@ -3,7 +3,7 @@
     "description": "This is a simple Example",
     "items": [
         {
-            "id": 132,
+            "id": "132",
             "name": "Поезда «на собаках»",
             "imgPath": "/public/sprint-3-images/cover-trains.jpg",
             "additionalInfo": "По мотивам учебной темы о Транссибе — путешествие от столицы до Байкала на электричках.",
@@ -17,7 +17,7 @@
             }
         },
         {
-            "id": 2,
+            "id": "232",
             "name": "Куршская коса",
             "imgPath": "/public/sprint-3-images/place-kosa.jpg",
             "additionalInfo": "Захватывающий вид Куршской косы, известной своими живописными пейзажами.",
@@ -31,7 +31,7 @@
             }
         },
         {
-            "id": 3,
+            "id": "1",
             "name": "Кольский полуостров",
             "imgPath": "/public/sprint-3-images/place-kolsky.jpg",
             "additionalInfo": "Кольский полуостров поражает своими видами северной природы.",
@@ -45,7 +45,7 @@
             }
         },
         {
-            "id": 4,
+            "id": "4",
             "name": "Алтай",
             "imgPath": "/public/sprint-3-images/place-altai.jpg",
             "additionalInfo": "Алтай знаменит своими горами и богатым разнообразием природы.",
@@ -59,7 +59,7 @@
             }
         },
         {
-            "id": 5,
+            "id": "5",
             "name": "Карелия",
             "imgPath": "/public/sprint-3-images/place-karelia.jpg",
             "additionalInfo": "Карелия славится своими живописными озёрами и густыми лесами.",
@@ -73,7 +73,7 @@
             }
         },
         {
-            "id": 6,
+            "id": "6",
             "name": "Зимний Байкал",
             "imgPath": "/public/sprint-3-images/place-winter-baikal.jpg",
             "additionalInfo": "Зимний Байкал — волшебное место с ледяными пейзажами.",
@@ -87,7 +87,7 @@
             }
         },
         {
-            "id": 7,
+            "id": "7",
             "name": "Сочи",
             "imgPath": "/public/sprint-3-images/photo-grid-sochi.jpg",
             "additionalInfo": "Сочи — курортный город с мягким климатом и живописными пейзажами.",

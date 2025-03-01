@@ -5,24 +5,20 @@ export type RawJSON = {
 }
 
 export type Data = {
-    id: number;
+    ObjFromData: ObjFromData[]
+}
+
+export type ObjFromData = {
+    id: string;
     name: string;
     imgPath: string;
     additionalInfo: string;
     aboutMe: string[];
     url: URL;
-}[]
+}
+
 
 export type URL = {
     adress: string;
     name: string;
-}
-
-export type ObjFromData = {
-    id: number;
-    name: string;
-    imgPath: string;
-    additionalInfo: string;
-    aboutMe: string[];
-    url: URL;
 }

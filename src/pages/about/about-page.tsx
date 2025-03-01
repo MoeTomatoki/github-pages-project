@@ -2,16 +2,43 @@ import { useParams } from "react-router-dom";
 
 import { ObjFromData } from "../../shared/types/dataFromServer";
 import { useDataStore } from "../../shared/stores/useDataStore";
+import { useEffect, useRef } from "react";
 
 export default function AboutPage() {
     const { index } = useParams();
-    
-    const store = useDataStore.getState();
-    console.log(store)
-    
-    const currentData = data?.find((item) => item.id === Number(index));
+    const data = useRef<ObjFromData | null>(null);
+    const isLoading = useRef<boolean>(true);
 
-    if (!currentData) {
+    const {items, loading, error, fetchData} = useDataStore();
+    useEffect(() => {
+        fetchData();
+    }, [])
+
+    useEffect(() => {
+        const result = items?.find(item => item.id === index);
+        data.current = result ? result : null;
+        if (!loading && items) {
+            isLoading.current = false;
+        }
+    }, [items])
+
+    if (error) {
+        return (
+            <div className="flex min-h-[80vh] items-center justify-center">
+                <span className="text-2xl text-neutral-50">{error}</span>
+            </div>
+        );
+    }
+
+    if (isLoading.current) {
+        return (
+            <div className="flex min-h-[80vh] items-center justify-center">
+                <span className="text-2xl text-neutral-50">Загрузка...</span>
+            </div>
+        );
+    }
+
+    if (!data.current && !isLoading.current) {
         return (
             <div className="flex flex-col text-center">
                 <div className="flex min-h-[80vh] items-center justify-center">
@@ -30,23 +57,23 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 items-center gap-10 max-w-[900px] mx-auto">
                 <div className="w-full flex justify-center">
                     <div className="flex flex-col text-neutral-50">
-                        <div className="text-5xl font-bold w-md text-pretty">{currentData.name}</div>
-                        <Img currentData={currentData} />
+                        <div className="text-5xl font-bold w-md text-pretty">{data.current?.name}</div>
+                        <Img currentData={data.current} />
                     </div>
                 </div>
                 <div className="flex flex-col text-neutral-50">
                     <div className="mt-2">
                         <span className="mr-1 text-neutral-400">URL:</span><br />
                         <a
-                            href={currentData?.url.adress}
+                            href={data.current?.url.adress}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-neutral-200 hover:underline"
                         >
-                            {currentData?.url.name}
+                            {data.current?.url.name}
                         </a>
                     </div>
-                    <Text currentData={currentData} />
+                    <Text currentData={data.current} />
                 </div>
             </div>
         </div>
