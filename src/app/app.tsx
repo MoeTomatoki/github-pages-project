@@ -7,8 +7,8 @@ import Footer from "../widgets/footer";
 
 export default function App() {
   return (
-      <div className="flex flex-col min-h-screen w-full overflow-hidden bg-primary-bg">
-          <Header />g
+      <div className="flex flex-col min-h-screen w-full overflow-x-hidden bg-primary-bg">
+          <Header />
           <main className="flex-grow  w-full">
               <Routes>
                   <Route path="/" element={<MainPage />} />

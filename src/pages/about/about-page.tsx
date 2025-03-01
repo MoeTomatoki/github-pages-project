@@ -1,15 +1,15 @@
 import { useParams } from "react-router-dom";
 
-import db from "../../db.json";
-import { Data, ObjFromData } from "../../shared/types/dataFromServer";
-
-const rawData: Data = db.items;
-
+import { ObjFromData } from "../../shared/types/dataFromServer";
+import { useDataStore } from "../../shared/stores/useDataStore";
 
 export default function AboutPage() {
     const { index } = useParams();
-
-    const currentData = rawData.find((data) => data.id === Number(index))
+    
+    const store = useDataStore.getState();
+    console.log(store)
+    
+    const currentData = data?.find((item) => item.id === Number(index));
 
     if (!currentData) {
         return (
@@ -28,27 +28,27 @@ export default function AboutPage() {
     return (
         <div className="flex min-h-[80vh] items-center">
             <div className="grid grid-cols-2 items-center gap-10 max-w-[900px] mx-auto">
-            <div className="w-full flex justify-center">
+                <div className="w-full flex justify-center">
+                    <div className="flex flex-col text-neutral-50">
+                        <div className="text-5xl font-bold w-md text-pretty">{currentData.name}</div>
+                        <Img currentData={currentData} />
+                    </div>
+                </div>
                 <div className="flex flex-col text-neutral-50">
-                    <div className="text-5xl font-bold w-md text-pretty">{currentData.name}</div>
-                    <Img currentData={currentData} />
+                    <div className="mt-2">
+                        <span className="mr-1 text-neutral-400">URL:</span><br />
+                        <a
+                            href={currentData?.url.adress}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-neutral-200 hover:underline"
+                        >
+                            {currentData?.url.name}
+                        </a>
+                    </div>
+                    <Text currentData={currentData} />
                 </div>
             </div>
-            <div className="flex flex-col text-neutral-50">
-                <div className="mt-2">
-                    <span className="mr-1 text-neutral-400">URL:</span><br />
-                    <a
-                        href={currentData.url.adress}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-neutral-200 hover:underline"
-                    >
-                        {currentData.url.name}
-                    </a>
-                </div>
-                <Text currentData={currentData} />
-            </div>
-        </div>
         </div>
     )
 }

@@ -4,12 +4,15 @@ import { motion, useMotionValue, useMotionValueEvent } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import { ShadowEdges } from "../../shared/ui/index";
 
-import db from "../../db.json";
+import { useDataStore } from "../../shared/stores/useDataStore";
 import { Data } from "../../shared/types/dataFromServer";
 
-const rawData: Data = db.items;
-
 export default function MainPage() {
+    const { data, loading, error, fetchData } = useDataStore();
+    if (!data && !loading && !error) {
+        fetchData();
+    }
+
     return (
         <div className="px-[25vw]">
             <div className="flex justify-center">
@@ -22,16 +25,17 @@ export default function MainPage() {
                     </h2>
                 </div>
             </div>
-            <MainGallery className="mt-4" />
+            {loading && <>Загрузка...</>}
+            {error && <div>{error}</div>}
+            {data && <MainGallery className="mt-4" dataItems={data} />}
         </div>
     )
 }
 
 const DRAG_RANGE = 50;
 const DELAY_INTERVAL = 3000;
-const CAROUSEL_LENGTH = rawData.length;
 
-export function MainGallery({ className }: { className: string }) {
+export function MainGallery({ className, dataItems }: { dataItems: Data, className: string }) {
     const [carouselIndex, setCarouselIndex] = useState<number>(0);
     const [dragging, setIsDragging] = useState<boolean>(false);
 
@@ -41,6 +45,7 @@ export function MainGallery({ className }: { className: string }) {
 
     const dragX = useMotionValue(0);
     const dragXProgress = useMotionValue(0);
+    const CAROUSEL_LENGTH = dataItems.length;
 
     useMotionValueEvent(dragX, "change", (latest) => {
         if (typeof latest === "number" && dragging) {
@@ -110,17 +115,17 @@ export function MainGallery({ className }: { className: string }) {
                 }}
                 className={clsx(className, "flex items-center cursor-grab active:cursor-grabbing")}
             >
-                <CarouselImage carouselIndex={carouselIndex} />
+                <CarouselImage carouselIndex={carouselIndex} dataItems={dataItems} />
             </motion.div>
-            <CarouselDots carouselIndex={carouselIndex} setCarouselIndex={setCarouselIndex} />
+            <CarouselDots dataItems={dataItems} carouselIndex={carouselIndex} setCarouselIndex={setCarouselIndex} />
         </>
     );
 }
 
-export function CarouselImage({ carouselIndex }: { carouselIndex: number }) {
+export function CarouselImage({ carouselIndex, dataItems }: { dataItems: Data, carouselIndex: number }) {
     return (
         <>
-            {rawData.map((data, index) => {
+            {dataItems.map((data, index) => {
                 const { id, name, imgPath, additionalInfo } = data
                 return <motion.div
                     key={id}
@@ -160,24 +165,26 @@ export function CarouselImage({ carouselIndex }: { carouselIndex: number }) {
 type DotsProps = {
     carouselIndex: number;
     setCarouselIndex: Dispatch<SetStateAction<number>>;
+    dataItems: Data
 }
 
-const dotRoundFunc = function (index: number) {
+const dotRoundFunc = function (index: number, CAROUSEL_LENGTH: number) {
     if (index === CAROUSEL_LENGTH / 2 || index === Math.round(CAROUSEL_LENGTH / 2) - 1) return "rounded-b-xl rounded-t-md"
     else if (index <= CAROUSEL_LENGTH / 2) return "rounded-bl-xl rounded-tr-xl"
     else return " rounded-br-xl rounded-tl-xl"
 }
 
-export function CarouselDots({ carouselIndex, setCarouselIndex }: DotsProps) {
+export function CarouselDots({ dataItems, carouselIndex, setCarouselIndex }: DotsProps) {
+    const CAROUSEL_LENGTH = dataItems.length;
     return (
         <div className="flex w-full justify-center gap-2 mt-4">
-            {rawData.map((data, index) => {
+            {dataItems.map((data, index) => {
                 return <button
                     key={data.id}
                     onClick={() => setCarouselIndex(index)}
                     className={clsx("h-5 w-5 bg-cyan-50 transition-colors hover:cursor-pointer",
                         `${index === carouselIndex ? "bg-white" : "bg-neutral-500"}`,
-                        `${dotRoundFunc(index)}`
+                        `${dotRoundFunc(index, CAROUSEL_LENGTH)}`
                     )}
                 />
             })}
