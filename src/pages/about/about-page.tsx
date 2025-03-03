@@ -1,37 +1,50 @@
-import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 import { ObjFromData } from "../../shared/types/dataFromServer";
-import { useDataStore } from "../../shared/stores/useDataStore";
-import { useEffect, useRef } from "react";
+import { fetchDataApi } from "../../shared/api/fetchData";
 import { Loader } from "../../shared/ui";
+import ButtonUI from "../../shared/ui/button";
+import clsx from "clsx";
+
 
 export default function AboutPage() {
-    const { index } = useParams();
-    const data = useRef<ObjFromData | null>(null);
-    const isLoading = useRef<boolean>(true);
+    const { id } = useParams();
+    const { index } = useLocation().state || "-1";
+    const [page, setPage] = useState<number>(Number(index));
 
-    const {items, loading, error, fetchData} = useDataStore();
-    useEffect(() => {
-        fetchData();
-    }, [])
-
-    useEffect(() => {
-        const result = items?.find(item => item.id === index);
-        data.current = result ? result : null;
-        if (!loading && items) {
-            isLoading.current = false;
-        }
-    }, [items])
-
-    if (error) {
-        return (
-            <div className="flex min-h-[80vh] items-center justify-center">
-                <span className="text-2xl text-neutral-50">{error}</span>
-            </div>
-        );
+    const { data: dataItem, error, isLoading, isError } = useQuery({
+        queryKey: ["items", "list", { page }],
+        queryFn: meta => fetchDataApi.getItemsAbout({ page }, meta)
+    });
+    const currentData = dataItem?.data[0];
+    console.log(dataItem)
+    const handleClick = (isLeft: boolean) => {
+        setPage(p => isLeft ? Math.max(p - 1, 0) : p + 1)
     }
 
-    if (isLoading.current) {
+    if (isError) {
+        return (
+            <div className="flex flex-col text-center">
+                <div className="flex min-h-[80vh] items-center justify-center">
+                    <div className="flex flex-col text-center">
+                        {
+                            error.toString().includes("Некорректная ссылка")
+                                ? <>
+                                    <span className="text-5xl font-bold text-neutral-50">Данные не найдены</span>
+                                    <span className="mt-2 text-xl bold text-neutral-200">Возможно такой страницы ещё не существует</span>
+                                </>
+                                : <span className="text-2xl text-neutral-50">Ошибка: {error.message}</span>
+                        }
+                    </div>
+                </div>
+                <span className="mt-auto text-md font-thin text-neutral-200">Текущая ссылка: {`http://russian-tours/about-page/${id}`}</span>
+            </div>
+        )
+    }
+
+    if (isLoading) {
         return (
             <div className="flex min-h-[80vh] items-center justify-center">
                 <Loader />
@@ -39,49 +52,57 @@ export default function AboutPage() {
         );
     }
 
-    if (!data.current && !isLoading.current) {
-        return (
-            <div className="flex flex-col text-center">
-                <div className="flex min-h-[80vh] items-center justify-center">
-                    <div className="flex flex-col text-center">
-                        <span className="text-5xl font-bold text-neutral-50">Данные не найдены</span>
-                        <span className="mt-2 text-xl bold text-neutral-200">Возможно такой страницы ещё не существует</span>
-                    </div>
-                </div>
-                <span className="mt-auto text-md font-thin text-neutral-200">Текущая ссылка: {`http://russian-tours/about-page/${index}`}</span>
-            </div>
-        )
-    }
-
     return (
-        <div className="flex min-h-[80vh] items-center">
-            <div className="grid grid-cols-2 items-center gap-10 max-w-[900px] mx-auto">
-                <div className="w-full flex justify-center">
+        <>
+            <div className="flex min-h-[80vh] items-center">
+                <div className="grid grid-cols-2 items-center gap-10 max-w-[900px] mx-auto">
+                    <div className="w-full flex justify-center">
+                        <div className="flex flex-col text-neutral-50">
+                            <div className="text-5xl font-bold w-md text-pretty">{currentData?.name}</div>
+                            <Img currentData={currentData} />
+                        </div>
+                    </div>
                     <div className="flex flex-col text-neutral-50">
-                        <div className="text-5xl font-bold w-md text-pretty">{data.current?.name}</div>
-                        <Img currentData={data.current} />
+                        <div className="mt-2">
+                            <div className="mr-1 text-neutral-400 flex justify-between">
+                                URL:
+                                <span>Номер страницы: {page + 1}</span>
+                            </div><br />
+
+                            <a
+                                href={currentData?.url.adress}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-neutral-200 hover:underline"
+                            >
+                                {currentData?.url.name}
+                            </a>
+                        </div>
+                        <Text currentData={currentData} />
                     </div>
-                </div>
-                <div className="flex flex-col text-neutral-50">
-                    <div className="mt-2">
-                        <span className="mr-1 text-neutral-400">URL:</span><br />
-                        <a
-                            href={data.current?.url.adress}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-neutral-200 hover:underline"
-                        >
-                            {data.current?.url.name}
-                        </a>
-                    </div>
-                    <Text currentData={data.current} />
                 </div>
             </div>
-        </div>
+            <div className="flex justify-center mt-6"> {/* Центрирование кнопок */}
+                <ButtonUI
+                    onClick={() => handleClick(true)}
+                    disabled={page === 0}
+                    className={clsx(page === 0 && "opacity-50 cursor-not-allowed")}
+                >
+                    ←
+                </ButtonUI>
+                <ButtonUI
+                    onClick={() => handleClick(false)}
+                    disabled={!dataItem?.next}
+                    className={clsx(!dataItem?.next && "opacity-50 cursor-not-allowed text-red-600")}
+                >
+                    →
+                </ButtonUI>
+            </div>
+        </>
     )
 }
 
-function Img({ currentData }: { currentData: ObjFromData | null }) {
+function Img({ currentData }: { currentData: ObjFromData | undefined }) {
     return (
         <div className="mt-4 text-neutral-300">
             <div
@@ -97,7 +118,7 @@ function Img({ currentData }: { currentData: ObjFromData | null }) {
     )
 }
 
-export function Text({ currentData }: { currentData: ObjFromData | null}) {
+export function Text({ currentData }: { currentData: ObjFromData | undefined }) {
     return (
         <div className="mt-2 text-xl font-thin indent-8 text-justify">
             {currentData?.aboutMe.map((paragraph, index) => <p

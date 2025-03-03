@@ -2,15 +2,18 @@ import clsx from "clsx";
 import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { motion, useMotionValue, useMotionValueEvent } from "framer-motion";
 import { NavLink } from "react-router-dom";
+import { useQuery, useQueryClient, UseQueryResult } from "@tanstack/react-query";
+
+import { Data } from "../../shared/types/dataFromServer";
+import { fetchDataApi } from "../../shared/api/fetchData";
 import { Loader, ShadowEdges } from "../../shared/ui/index";
 
-import { useDataStore } from "../../shared/stores/useDataStore";
 
 export default function MainPage() {
-    const { items, loading, error, fetchData } = useDataStore();
-    if (!items && !loading && !error) {
-        fetchData();
-    }
+    const fromFetchQuery = useQuery({
+        queryKey: ["items", "list"],
+        queryFn: fetchDataApi.getItemsMain
+    });
 
     return (
         <div className="px-[25vw]">
@@ -24,7 +27,7 @@ export default function MainPage() {
                     </h2>
                 </div>
             </div>
-            {<MainGallery className="mt-4" />}
+            {<MainGallery fromFetchQuery={fromFetchQuery} className="mt-4" />}
         </div>
     )
 }
@@ -32,7 +35,9 @@ export default function MainPage() {
 const DRAG_RANGE = 50;
 const DELAY_INTERVAL = 3000;
 
-export function MainGallery({ className }: { className: string }) {
+export function MainGallery({ fromFetchQuery, className }: { fromFetchQuery: UseQueryResult<Data, Error>, className: string }) {
+    const queryClient = useQueryClient();
+
     const [carouselIndex, setCarouselIndex] = useState<number>(0);
     const [dragging, setIsDragging] = useState<boolean>(false);
 
@@ -42,7 +47,7 @@ export function MainGallery({ className }: { className: string }) {
 
     const dragX = useMotionValue(0);
     const dragXProgress = useMotionValue(0);
-    const { items: dataItems } = useDataStore.getState();
+    const dataItems = queryClient.getQueryData(["items", "list"]) as Data;
 
     const CAROUSEL_LENGTH = dataItems ? dataItems.length : 3;
 
@@ -113,16 +118,17 @@ export function MainGallery({ className }: { className: string }) {
                 }}
                 className={clsx(className, "flex items-center cursor-grab active:cursor-grabbing")}
             >
-                <CarouselImage carouselIndex={carouselIndex} />
+                <CarouselImage carouselIndex={carouselIndex} fromFetchQuery={fromFetchQuery}/>
             </motion.div>
-            <CarouselDots carouselIndex={carouselIndex} setCarouselIndex={setCarouselIndex} />
+            <CarouselDots carouselIndex={carouselIndex} setCarouselIndex={setCarouselIndex} fromFetchQuery={fromFetchQuery}/>
         </>
     );
 }
 
-export function CarouselImage({ carouselIndex }: { carouselIndex: number }) {
-    const { items, loading, error } = useDataStore.getState();
-    const dataItems = items === null ? Array(3).fill({}) : items;
+export function CarouselImage({ carouselIndex, fromFetchQuery }: { carouselIndex: number, fromFetchQuery: UseQueryResult<Data, Error> }) {
+    const { data, error, isLoading, status, isError } = fromFetchQuery;
+
+    const dataItems = status !== "success" ? Array(3).fill({}) : data;
     
     return (
         <>
@@ -149,6 +155,7 @@ export function CarouselImage({ carouselIndex }: { carouselIndex: number }) {
                     <div className="absolute inset-0 z-10 flex justify-center items-center hover-events-none">
                         <NavLink
                             to={`/about-page/${id}`}
+                            state={{index}}
                             onPointerDownCapture={(e) => e.stopPropagation()}
                             className="text-center text-neutral-50 hover:cursor-pointer"
                         >
@@ -156,8 +163,8 @@ export function CarouselImage({ carouselIndex }: { carouselIndex: number }) {
                             <h3 className="mt-2 max-w-xs break-words text-neutral-200">{additionalInfo}</h3>
                         </NavLink>
                     </div>
-                    {loading && <Loader />}
-                    {error && <div className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">{error}</div>}
+                    {isLoading && <Loader />}
+                    {isError && <div className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">{error.message}</div>}
                     <ShadowEdges />
                 </motion.div>
             })}
@@ -168,6 +175,7 @@ export function CarouselImage({ carouselIndex }: { carouselIndex: number }) {
 type DotsProps = {
     carouselIndex: number;
     setCarouselIndex: Dispatch<SetStateAction<number>>;
+    fromFetchQuery: UseQueryResult<Data, Error>
 }
 
 const dotRoundFunc = function (index: number, CAROUSEL_LENGTH: number) {
@@ -176,10 +184,11 @@ const dotRoundFunc = function (index: number, CAROUSEL_LENGTH: number) {
     else return " rounded-br-xl rounded-tl-xl"
 }
 
-export function CarouselDots({ carouselIndex, setCarouselIndex }: DotsProps) {
-    const { items } = useDataStore.getState();
-    const dataItems = items === null ? Array(3).fill({}) : items;
-    const CAROUSEL_LENGTH = dataItems ? dataItems.length : 3;
+export function CarouselDots({ carouselIndex, setCarouselIndex, fromFetchQuery }: DotsProps) {
+    const { data, status } = fromFetchQuery;
+
+    const dataItems = status !== "success" ? Array(3).fill({}) : data;
+    const CAROUSEL_LENGTH = status !== "success" ? dataItems.length : 3;
     return (
         <div className="flex w-full justify-center gap-2 mt-4">
             {dataItems?.map((data, index) => {
