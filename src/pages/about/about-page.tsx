@@ -1,16 +1,15 @@
+import clsx from "clsx";
 import { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 import { ObjFromData } from "../../shared/types/dataFromServer";
 import { fetchDataApi } from "../../shared/api/fetchData";
 import { Loader } from "../../shared/ui";
 import ButtonUI from "../../shared/ui/button";
-import clsx from "clsx";
-
+import ErrorPage from "./error-page";
 
 export default function AboutPage() {
-    const { id } = useParams();
     const { index } = useLocation().state || "-1";
     const [page, setPage] = useState<number>(Number(index));
 
@@ -18,38 +17,19 @@ export default function AboutPage() {
         queryKey: ["items", "list", { page }],
         queryFn: meta => fetchDataApi.getItemsAbout({ page }, meta)
     });
+
+    if (isError) return <ErrorPage error={error} />
+
+    if (isLoading) return (
+        <div className="flex min-h-[80vh] items-center justify-center">
+            <Loader />
+        </div>
+    )
+
     const currentData = dataItem?.data[0];
-    console.log(dataItem)
-    const handleClick = (isLeft: boolean) => {
-        setPage(p => isLeft ? Math.max(p - 1, 0) : p + 1)
-    }
 
-    if (isError) {
-        return (
-            <div className="flex flex-col text-center">
-                <div className="flex min-h-[80vh] items-center justify-center">
-                    <div className="flex flex-col text-center">
-                        {
-                            error.toString().includes("Некорректная ссылка")
-                                ? <>
-                                    <span className="text-5xl font-bold text-neutral-50">Данные не найдены</span>
-                                    <span className="mt-2 text-xl bold text-neutral-200">Возможно такой страницы ещё не существует</span>
-                                </>
-                                : <span className="text-2xl text-neutral-50">Ошибка: {error.message}</span>
-                        }
-                    </div>
-                </div>
-                <span className="mt-auto text-md font-thin text-neutral-200">Текущая ссылка: {`http://russian-tours/about-page/${id}`}</span>
-            </div>
-        )
-    }
-
-    if (isLoading) {
-        return (
-            <div className="flex min-h-[80vh] items-center justify-center">
-                <Loader />
-            </div>
-        );
+    const handleClick = (isPrev: boolean) => {
+        setPage(p => isPrev ? Math.max(p - 1, 0) : p + 1)
     }
 
     return (
@@ -82,7 +62,7 @@ export default function AboutPage() {
                     </div>
                 </div>
             </div>
-            <div className="flex justify-center mt-6"> {/* Центрирование кнопок */}
+            <div className="flex justify-center">
                 <ButtonUI
                     onClick={() => handleClick(true)}
                     disabled={page === 0}
@@ -93,7 +73,7 @@ export default function AboutPage() {
                 <ButtonUI
                     onClick={() => handleClick(false)}
                     disabled={!dataItem?.next}
-                    className={clsx(!dataItem?.next && "opacity-50 cursor-not-allowed text-red-600")}
+                    className={clsx(!dataItem?.next && "opacity-50 cursor-not-allowed")}
                 >
                     →
                 </ButtonUI>
