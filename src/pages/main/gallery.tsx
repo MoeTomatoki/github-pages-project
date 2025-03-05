@@ -34,7 +34,7 @@ export default function Gallery({ fromFetchQuery, className }: { fromFetchQuery:
                 style={{ 
                     x: dragX,
                 }}
-                className={clsx(className, "flex items-center cursor-grab active:cursor-grabbing")}
+                className={clsx(className, "flex mt-10 items-center cursor-grab active:cursor-grabbing")}
             >
                 <ViewCarousel carouselIndex={carouselIndex} fromFetchQuery={fromFetchQuery}/>
             </motion.div>

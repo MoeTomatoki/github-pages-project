@@ -34,34 +34,34 @@ export default function AboutPage() {
 
     return (
         <>
-            <div className="flex flex-col min-h-[70vh] items-center p-4 text-neutral-50 dark:text-neutral-800">
-                <div className="text-center mb-8">
+            <div className="flex flex-col md:min-h-[70vh] items-center p-4 text-neutral-50 dark:text-neutral-800">
+                <div className="text-center md:mb-8">
                     <h1 className="text-4xl font-bold text-pretty">{currentData?.name}</h1>
                     <p className="text-neutral-400 dark:text-neutral-600 mt-2">
                         <span>Номер страницы: {page + 1}</span>
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 max-w-5xl w-full">
                     <Img currentData={currentData} />
 
-                    <div className="flex flex-col justify-center">
-                        <span className="mb-4 text-neutral-400 dark:text-neutral-600">
+                    <div className="flex text-xs md:text-md flex-col justify-center">
+                        <span className=" md:mb-4 text-neutral-400 dark:text-neutral-600">
                             URL:
                         </span>
                         <a
                             href={currentData?.url.adress}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-3xl font-semibold text-neutral-200 dark:text-neutral-700 hover:underline"
+                            className="text-xl font-semibold md:text-3xl md:font-semibold text-neutral-200 dark:text-neutral-700 text-justify hover:underline"
                         >
                             {currentData?.url.name}
                         </a>
-                        <Text currentData={currentData} />
+                        <Text currentData={currentData}/>
                     </div>
                 </div>
 
-                <div className="mt-12 flex justify-center">
+                <div className="mt-4 md:mt-12 flex justify-center gap-4">
                     <ButtonUI
                         onClick={() => handleClick(true)}
                         disabled={page === 0}
@@ -78,7 +78,7 @@ export default function AboutPage() {
                     </ButtonUI>
                 </div>
 
-                <div className="mt-12 flex flex-col items-center">
+                <div className="mt-4 md:mt-48 flex flex-col items-center">
                     <p className="text-neutral-400 dark:text-neutral-600 text-sm">
                         Хочешь узнать большего? Ты всегда можешь связаться с нами!
                     </p>
@@ -113,7 +113,7 @@ function Img({ currentData }: { currentData: ObjFromData | undefined }) {
 
 export function Text({ currentData }: { currentData: ObjFromData | undefined }) {
     return (
-        <div className="mt-2 text-xl font-thin indent-8 text-justify">
+        <div className="mt-2 text-base md:text-xl font-thin indent-8 text-justify">
             {currentData?.aboutMe.map((paragraph, index) => <p
                 key={index}
                 className="mt-2"
