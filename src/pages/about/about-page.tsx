@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { motion } from "framer-motion";
 
 import { ObjFromData } from "../../shared/types/dataFromServer";
 import { fetchDataApi } from "../../shared/api/fetchData";
@@ -33,7 +34,13 @@ export default function AboutPage() {
     }
 
     return (
-        <>
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col md:min-h-[70vh] items-center p-4 text-neutral-50 dark:text-neutral-800"
+        >
             <div className="flex flex-col md:min-h-[70vh] items-center p-4 text-neutral-50 dark:text-neutral-800">
                 <div className="text-center md:mb-8">
                     <h1 className="text-4xl font-bold text-pretty">{currentData?.name}</h1>
@@ -57,7 +64,7 @@ export default function AboutPage() {
                         >
                             {currentData?.url.name}
                         </a>
-                        <Text currentData={currentData}/>
+                        <Text currentData={currentData} />
                     </div>
                 </div>
 
@@ -91,7 +98,7 @@ export default function AboutPage() {
                 </div>
 
             </div>
-        </>
+        </motion.div>
     )
 }
 

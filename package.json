@@ -15,9 +15,11 @@
     "@tanstack/react-query": "^5.66.11",
     "clsx": "^2.1.1",
     "framer-motion": "^12.4.4",
+    "i18next": "^24.2.2",
     "json-server": "^1.0.0-beta.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-i18next": "^15.4.1",
     "react-router-dom": "^7.2.0",
     "tailwindcss": "^4.0.6",
     "zustand": "^5.0.3"
