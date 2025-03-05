@@ -26,8 +26,8 @@ export default function PaginationDots({ carouselIndex, setCarouselIndex, fromFe
                 return <button
                     key={data.id}
                     onClick={() => setCarouselIndex(index)}
-                    className={clsx("h-5 w-5 bg-cyan-50 transition-colors hover:cursor-pointer",
-                        `${index === carouselIndex ? "bg-white" : "bg-neutral-500"}`,
+                    className={clsx("h-5 w-5 transition-colors hover:cursor-pointer ",
+                        `${index === carouselIndex ? "bg-neutral-50 dark:bg-neutral-800" : "bg-neutral-500"}`,
                         `${dotRoundFunc(index, dataItems.length)}`
                     )}
                 />

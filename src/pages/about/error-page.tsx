@@ -10,14 +10,14 @@ export default function ErrorPage({ error }: {error: Error}) {
                     {
                         error.toString().includes("Некорректная ссылка")
                             ? <>
-                                <span className="text-5xl font-bold text-neutral-50">Данные не найдены</span>
-                                <span className="mt-2 text-xl bold text-neutral-200">Возможно такой страницы ещё не существует</span>
+                                <span className="text-5xl font-bold text-neutral-50 dark:text-neutral-800">Данные не найдены</span>
+                                <span className="mt-2 text-xl bold text-neutral-200 dark:text-neutral-600">Возможно такой страницы ещё не существует</span>
                             </>
-                            : <span className="text-2xl text-neutral-50">Ошибка: {error.message}</span>
+                            : <span className="text-2xl text-neutral-50 dark:text-neutral-800">Ошибка: {error.message}</span>
                     }
                 </div>
             </div>
-            <span className="mt-auto text-md font-thin text-neutral-200">Текущая ссылка: {`http://russian-tours/about-page/${id}`}</span>
+            <span className="mt-auto text-md font-thin text-neutral-200 dark:text-neutral-600">Текущая ссылка: {`http://russian-tours/about-page/${id}`}</span>
         </div>
     )
 }

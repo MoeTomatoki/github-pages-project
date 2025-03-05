@@ -6,8 +6,8 @@ import { useQuery } from "@tanstack/react-query";
 import { ObjFromData } from "../../shared/types/dataFromServer";
 import { fetchDataApi } from "../../shared/api/fetchData";
 import { Loader } from "../../shared/ui";
-import ButtonUI from "../../shared/ui/button";
-import ErrorPage from "./error-page";
+import { ButtonUI } from "../../shared/ui/";
+import { ErrorPage } from "./";
 
 export default function AboutPage() {
     const { index } = useLocation().state || "-1";
@@ -34,49 +34,62 @@ export default function AboutPage() {
 
     return (
         <>
-            <div className="flex min-h-[80vh] items-center">
-                <div className="grid grid-cols-2 items-center gap-10 max-w-[900px] mx-auto">
-                    <div className="w-full flex justify-center">
-                        <div className="flex flex-col text-neutral-50">
-                            <div className="text-5xl font-bold w-md text-pretty">{currentData?.name}</div>
-                            <Img currentData={currentData} />
-                        </div>
-                    </div>
-                    <div className="flex flex-col text-neutral-50">
-                        <div className="mt-2">
-                            <div className="mr-1 text-neutral-400 flex justify-between">
-                                URL:
-                                <span>Номер страницы: {page + 1}</span>
-                            </div><br />
+            <div className="flex flex-col min-h-[70vh] items-center p-4 text-neutral-50 dark:text-neutral-800">
+                <div className="text-center mb-8">
+                    <h1 className="text-4xl font-bold text-pretty">{currentData?.name}</h1>
+                    <p className="text-neutral-400 dark:text-neutral-600 mt-2">
+                        <span>Номер страницы: {page + 1}</span>
+                    </p>
+                </div>
 
-                            <a
-                                href={currentData?.url.adress}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-neutral-200 hover:underline"
-                            >
-                                {currentData?.url.name}
-                            </a>
-                        </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full">
+                    <Img currentData={currentData} />
+
+                    <div className="flex flex-col justify-center">
+                        <span className="mb-4 text-neutral-400 dark:text-neutral-600">
+                            URL:
+                        </span>
+                        <a
+                            href={currentData?.url.adress}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-3xl font-semibold text-neutral-200 dark:text-neutral-700 hover:underline"
+                        >
+                            {currentData?.url.name}
+                        </a>
                         <Text currentData={currentData} />
                     </div>
                 </div>
-            </div>
-            <div className="flex justify-center">
-                <ButtonUI
-                    onClick={() => handleClick(true)}
-                    disabled={page === 0}
-                    className={clsx(page === 0 && "opacity-50 cursor-not-allowed")}
-                >
-                    ←
-                </ButtonUI>
-                <ButtonUI
-                    onClick={() => handleClick(false)}
-                    disabled={!dataItem?.next}
-                    className={clsx(!dataItem?.next && "opacity-50 cursor-not-allowed")}
-                >
-                    →
-                </ButtonUI>
+
+                <div className="mt-12 flex justify-center">
+                    <ButtonUI
+                        onClick={() => handleClick(true)}
+                        disabled={page === 0}
+                        className={clsx(page === 0 && "opacity-50 cursor-not-allowed")}
+                    >
+                        ←
+                    </ButtonUI>
+                    <ButtonUI
+                        onClick={() => handleClick(false)}
+                        disabled={!dataItem?.next}
+                        className={clsx(!dataItem?.next && "opacity-50 cursor-not-allowed")}
+                    >
+                        →
+                    </ButtonUI>
+                </div>
+
+                <div className="mt-12 flex flex-col items-center">
+                    <p className="text-neutral-400 dark:text-neutral-600 text-sm">
+                        Хочешь узнать большего? Ты всегда можешь связаться с нами!
+                    </p>
+                    <a
+                        href="#"
+                        className="text-pretty hover:underline mt-2"
+                    >
+                        Связаться с нами
+                    </a>
+                </div>
+
             </div>
         </>
     )

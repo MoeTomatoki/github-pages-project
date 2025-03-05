@@ -1,5 +1,5 @@
-import HeaderIcon from "./header-icon";
 import ShadowEdges from "./shadow-edges";
 import Loader from "./loader";
+import ButtonUI from "./button";
 
-export { HeaderIcon, ShadowEdges, Loader }
+export { ShadowEdges, Loader, ButtonUI }

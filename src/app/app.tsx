@@ -12,7 +12,7 @@ const queryClient = new QueryClient()
 export default function App() {
     return (
         <QueryClientProvider client={queryClient}>
-            <div className="flex flex-col min-h-screen w-full overflow-x-hidden bg-primary-bg">
+            <div className="flex flex-col min-h-screen w-full overflow-x-hidden bg-neutral-900 dark:bg-neutral-50">
                 <Header />
                 <main className="flex-grow  w-full">
                     <Routes>

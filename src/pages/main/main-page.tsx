@@ -13,7 +13,7 @@ export default function MainPage() {
     return (
         <div className="px-[25vw]">
             <div className="flex justify-center">
-                <div className="mt-4 max-w-xl text-3xl text-neutral-50 text-center">
+                <div className="mt-4 max-w-xl text-3xl text-center text-neutral-50 dark:text-neutral-800">
                     <h1 className="text-5xl font-bold">
                         Путешествия по России
                     </h1>
