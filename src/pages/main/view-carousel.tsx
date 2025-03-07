@@ -17,7 +17,7 @@ export default function ViewCarousel({ carouselIndex, fromFetchQuery }: { carous
             {dataItems?.map((data, index) => {
                 const { id, name, imgPath, additionalInfo } = data
                 return <motion.div
-                    key={id}
+                    key={`${id}-${index}`}
                     style={{
                         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${imgPath})`,
                         backgroundSize: "cover",

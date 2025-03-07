@@ -1,210 +1,214 @@
 {
-    "ru": {
-        "title": "Data from server",
-        "description": "This is a simple Example",
-        "items": [
-            {
-                "id": "132",
-                "name": "Поезда «на собаках»",
-                "imgPath": "/public/sprint-3-images/cover-trains.jpg",
-                "additionalInfo": "По мотивам учебной темы о Транссибе — путешествие от столицы до Байкала на электричках.",
-                "aboutMe": [
-                    "Поезда — один из самых популярных видов транспорта. Их ритмичное движение завораживает и дарит ощущение спокойствия.",
-                    "С развитием железных дорог путешествия на поезде стали не только удобными, но и живописными: виды из окна могут соперничать с картинами великих художников."
-                ],
-                "url": {
-                    "adress": "https://rzd.ru",
-                    "name": "Официальный сайт - Российские железные дороги"
-                }
+    "items": [
+        {
+            "id": "132",
+            "name": "Поезда «на собаках»",
+            "imgPath": "/public/sprint-3-images/cover-trains.jpg",
+            "additionalInfo": "По мотивам учебной темы о Транссибе — путешествие от столицы до Байкала на электричках.",
+            "aboutMe": [
+                "Поезда — один из самых популярных видов транспорта. Их ритмичное движение завораживает и дарит ощущение спокойствия.",
+                "С развитием железных дорог путешествия на поезде стали не только удобными, но и живописными: виды из окна могут соперничать с картинами великих художников."
+            ],
+            "url": {
+                "adress": "https://rzd.ru",
+                "name": "Официальный сайт - Российские железные дороги"
             },
-            {
-                "id": "232",
-                "name": "Куршская коса",
-                "imgPath": "/public/sprint-3-images/place-kosa.jpg",
-                "additionalInfo": "Захватывающий вид Куршской косы, известной своими живописными пейзажами.",
-                "aboutMe": [
-                    "Здесь, посреди лесов и песчаных дюн, вы сможете увидеть два водных горизонта — спокойного Куршского залива с одной стороны и подёрнутого рябью волн Балтийского моря с другой. Уникальная природная зона на краю российского анклава.",
-                    "На этом Калининградская область не заканчивается. Для путешественника и исследователя там же по соседству — самая западная точка России, Балтийская коса, — и немецкое наследие россыпи небольших приморских городов. Атмосфера здешних мест исключает суету, окуная в спокойствие природы и запах стального, прохладного моря."
-                ],
-                "url": {
-                    "adress": "https://park-kosa.ru",
-                    "name": "Официальный сайт - Парк Коса"
-                }
+             "language": "ru"
+        },
+        {
+            "id": "232",
+            "name": "Куршская коса",
+            "imgPath": "/public/sprint-3-images/place-kosa.jpg",
+            "additionalInfo": "Захватывающий вид Куршской косы, известной своими живописными пейзажами.",
+            "aboutMe": [
+                "Здесь, посреди лесов и песчаных дюн, вы сможете увидеть два водных горизонта — спокойного Куршского залива с одной стороны и подёрнутого рябью волн Балтийского моря с другой. Уникальная природная зона на краю российского анклава.",
+                "На этом Калининградская область не заканчивается. Для путешественника и исследователя там же по соседству — самая западная точка России, Балтийская коса, — и немецкое наследие россыпи небольших приморских городов. Атмосфера здешних мест исключает суету, окуная в спокойствие природы и запах стального, прохладного моря."
+            ],
+            "url": {
+                "adress": "https://park-kosa.ru",
+                "name": "Официальный сайт - Парк Коса"
             },
-            {
-                "id": "1",
-                "name": "Кольский полуостров",
-                "imgPath": "/public/sprint-3-images/place-kolsky.jpg",
-                "additionalInfo": "Кольский полуостров поражает своими видами северной природы.",
-                "aboutMe": [
-                    "Почти весь полуостров находится за Полярным кругом. Саамская тундра, от которой на юг — тайга, а на север — Ледовитый океан, прикидывающийся Баренцевым морем.",
-                    "Здесь можно увидеть северное сияние, бескрайние снежные просторы и могучие реки, прорезающие тундру."
-                ],
-                "url": {
-                    "adress": "https://park-kolsky.ru",
-                    "name": "Информационный портал - Кольский полуостров"
-                }
+             "language": "ru"
+        },
+        {
+            "id": "1",
+            "name": "Кольский полуостров",
+            "imgPath": "/public/sprint-3-images/place-kolsky.jpg",
+            "additionalInfo": "Кольский полуостров поражает своими видами северной природы.",
+            "aboutMe": [
+                "Почти весь полуостров находится за Полярным кругом. Саамская тундра, от которой на юг — тайга, а на север — Ледовитый океан, прикидывающийся Баренцевым морем.",
+                "Здесь можно увидеть северное сияние, бескрайние снежные просторы и могучие реки, прорезающие тундру."
+            ],
+            "url": {
+                "adress": "https://park-kolsky.ru",
+                "name": "Информационный портал - Кольский полуостров"
             },
-            {
-                "id": "4",
-                "name": "Алтай",
-                "imgPath": "/public/sprint-3-images/place-altai.jpg",
-                "additionalInfo": "Алтай знаменит своими горами и богатым разнообразием природы.",
-                "aboutMe": [
-                    "Алтай — одно из красивейших мест в России. В первую очередь из-за гор: если ехать вдоль хребта, вы увидите склоны, усыпанные соснами, горные реки и озёра. А если вы откроете в автомобиле окна, сможете познакомиться с невидимым чудом здешних мест — горным воздухом.",
-                    "Климат на Алтае умеренный, поэтому ехать сюда лучше всего летом. Так вы увидите всё разнообразие местной флоры и фауны. По лесам Алтая бродят лоси, над хребтами летают орлы, а на равнинах пасутся косули. И знаменитые манулы — тоже обитатели Алтайского края."
-                ],
-                "url": {
-                    "adress": "https://altai-tour.ru",
-                    "name": "Туристический портал - Путешествия по Алтаю"
-                }
+             "language": "ru"
+        },
+        {
+            "id": "4",
+            "name": "Алтай",
+            "imgPath": "/public/sprint-3-images/place-altai.jpg",
+            "additionalInfo": "Алтай знаменит своими горами и богатым разнообразием природы.",
+            "aboutMe": [
+                "Алтай — одно из красивейших мест в России. В первую очередь из-за гор: если ехать вдоль хребта, вы увидите склоны, усыпанные соснами, горные реки и озёра. А если вы откроете в автомобиле окна, сможете познакомиться с невидимым чудом здешних мест — горным воздухом.",
+                "Климат на Алтае умеренный, поэтому ехать сюда лучше всего летом. Так вы увидите всё разнообразие местной флоры и фауны. По лесам Алтая бродят лоси, над хребтами летают орлы, а на равнинах пасутся косули. И знаменитые манулы — тоже обитатели Алтайского края."
+            ],
+            "url": {
+                "adress": "https://altai-tour.ru",
+                "name": "Туристический портал - Путешествия по Алтаю"
             },
-            {
-                "id": "5",
-                "name": "Карелия",
-                "imgPath": "/public/sprint-3-images/place-karelia.jpg",
-                "additionalInfo": "Карелия славится своими живописными озёрами и густыми лесами.",
-                "aboutMe": [
-                    "Карелия — край тысячи озёр и девственных лесов. Здесь можно насладиться уединением и тишиной природы.",
-                    "На просторах Карелии обитают редкие животные: бурые медведи, рыси, северные олени. Осенью здесь особенно красиво — леса окрашиваются в золотистые и багряные оттенки."
-                ],
-                "url": {
-                    "adress": "https://karelia.ru",
-                    "name": "Официальный сайт - Путешествия по Карелии"
-                }
+             "language": "ru"
+        },
+        {
+            "id": "5",
+            "name": "Карелия",
+            "imgPath": "/public/sprint-3-images/place-karelia.jpg",
+            "additionalInfo": "Карелия славится своими живописными озёрами и густыми лесами.",
+            "aboutMe": [
+                "Карелия — край тысячи озёр и девственных лесов. Здесь можно насладиться уединением и тишиной природы.",
+                "На просторах Карелии обитают редкие животные: бурые медведи, рыси, северные олени. Осенью здесь особенно красиво — леса окрашиваются в золотистые и багряные оттенки."
+            ],
+            "url": {
+                "adress": "https://karelia.ru",
+                "name": "Официальный сайт - Путешествия по Карелии"
             },
-            {
-                "id": "6",
-                "name": "Зимний Байкал",
-                "imgPath": "/public/sprint-3-images/place-winter-baikal.jpg",
-                "additionalInfo": "Зимний Байкал — волшебное место с ледяными пейзажами.",
-                "aboutMe": [
-                    "Зимой Байкал превращается в настоящий ледяной мир. Прозрачный лёд позволяет увидеть дно озера на глубине нескольких метров.",
-                    "Здесь проводятся уникальные фестивали: гонки на коньках, подлёдная рыбалка и даже автомобильные заезды по замёрзшей глади озера."
-                ],
-                "url": {
-                    "adress": "https://baikalmile.com",
-                    "name": "Фестиваль - Байкальская миля"
-                }
+             "language": "ru"
+        },
+        {
+            "id": "6",
+            "name": "Зимний Байкал",
+            "imgPath": "/public/sprint-3-images/place-winter-baikal.jpg",
+            "additionalInfo": "Зимний Байкал — волшебное место с ледяными пейзажами.",
+            "aboutMe": [
+                "Зимой Байкал превращается в настоящий ледяной мир. Прозрачный лёд позволяет увидеть дно озера на глубине нескольких метров.",
+                "Здесь проводятся уникальные фестивали: гонки на коньках, подлёдная рыбалка и даже автомобильные заезды по замёрзшей глади озера."
+            ],
+            "url": {
+                "adress": "https://baikalmile.com",
+                "name": "Фестиваль - Байкальская миля"
             },
-            {
-                "id": "7",
-                "name": "Сочи",
-                "imgPath": "/public/sprint-3-images/photo-grid-sochi.jpg",
-                "additionalInfo": "Сочи — курортный город с мягким климатом и живописными пейзажами.",
-                "aboutMe": [
-                    "Сочи — это не только море и пляжи. Здесь находятся величественные Кавказские горы, горячие источники и заповедники с уникальной природой.",
-                    "Город стал знаменитым благодаря Олимпийским играм 2014 года. Сегодня он привлекает туристов круглый год — от летнего отдыха на Чёрном море до зимних горнолыжных курортов."
-                ],
-                "url": {
-                    "adress": "https://sochi-travel.ru",
-                    "name": "Путеводитель - Достопримечательности Сочи"
-                }
-            }
-        ]
-    },
-    "en": {
-        "title": "Data from server",
-        "description": "This is a simple Example",
-        "items": [
-            {
-                "id": "132",
-                "name": "Dog-powered trains",
-                "imgPath": "/public/sprint-3-images/cover-trains.jpg",
-                "additionalInfo": "A journey from the capital to Baikal by electric trains.",
-                "aboutMe": [
-                    "Trains are one of the most popular modes of transport. Their rhythmic movement is mesmerizing and gives a sense of calm.",
-                    "With the development of railways, train travel has become not only convenient but also picturesque: the views from the window can rival the paintings of great artists."
-                ],
-                "url": {
-                    "adress": "https://rzd.ru",
-                    "name": "Official website - Russian Railways"
-                }
+             "language": "ru"
+        },
+        {
+            "id": "7",
+            "name": "Сочи",
+            "imgPath": "/public/sprint-3-images/photo-grid-sochi.jpg",
+            "additionalInfo": "Сочи — курортный город с мягким климатом и живописными пейзажами.",
+            "aboutMe": [
+                "Сочи — это не только море и пляжи. Здесь находятся величественные Кавказские горы, горячие источники и заповедники с уникальной природой.",
+                "Город стал знаменитым благодаря Олимпийским играм 2014 года. Сегодня он привлекает туристов круглый год — от летнего отдыха на Чёрном море до зимних горнолыжных курортов."
+            ],
+            "url": {
+                "adress": "https://sochi-travel.ru",
+                "name": "Путеводитель - Достопримечательности Сочи"
             },
-            {
-                "id": "232",
-                "name": "Curonian Spit",
-                "imgPath": "/public/sprint-3-images/place-kosa.jpg",
-                "additionalInfo": "Breathtaking views of the Curonian Spit, known for its picturesque landscapes.",
-                "aboutMe": [
-                    "Here, among forests and sand dunes, you can see two water horizons — the calm Curonian Lagoon on one side and the rippled waves of the Baltic Sea on the other. A unique natural area on the edge of the Russian enclave.",
-                    "The Kaliningrad region does not end here. Nearby are the westernmost point of Russia, the Baltic Spit, and the German heritage of small seaside towns. The atmosphere of these places eliminates hustle and immerses you in the tranquility of nature and the scent of the cool steel sea."
-                ],
-                "url": {
-                    "adress": "https://park-kosa.ru",
-                    "name": "Official website - Park Kosa"
-                }
+             "language": "ru"
+        },
+        {
+            "id": "132",
+            "name": "Dog-powered trains",
+            "imgPath": "/public/sprint-3-images/cover-trains.jpg",
+            "additionalInfo": "A journey from the capital to Baikal by electric trains.",
+            "aboutMe": [
+                "Trains are one of the most popular modes of transport. Their rhythmic movement is mesmerizing and gives a sense of calm.",
+                "With the development of railways, train travel has become not only convenient but also picturesque: the views from the window can rival the paintings of great artists."
+            ],
+            "url": {
+                "adress": "https://rzd.ru",
+                "name": "Official website - Russian Railways"
             },
-            {
-                "id": "1",
-                "name": "Kola Peninsula",
-                "imgPath": "/public/sprint-3-images/place-kolsky.jpg",
-                "additionalInfo": "The Kola Peninsula impresses with its northern landscapes.",
-                "aboutMe": [
-                    "Almost the entire peninsula lies beyond the Arctic Circle. The Sami tundra, with taiga to the south and the Arctic Ocean masquerading as the Barents Sea to the north.",
-                    "Here you can see the northern lights, endless snowy expanses, and mighty rivers cutting through the tundra."
-                ],
-                "url": {
-                    "adress": "https://park-kolsky.ru",
-                    "name": "Information portal - Kola Peninsula"
-                }
+             "language": "en"
+        },
+        {
+            "id": "232",
+            "name": "Curonian Spit",
+            "imgPath": "/public/sprint-3-images/place-kosa.jpg",
+            "additionalInfo": "Breathtaking views of the Curonian Spit, known for its picturesque landscapes.",
+            "aboutMe": [
+                "Here, among forests and sand dunes, you can see two water horizons — the calm Curonian Lagoon on one side and the rippled waves of the Baltic Sea on the other. A unique natural area on the edge of the Russian enclave.",
+                "The Kaliningrad region does not end here. Nearby are the westernmost point of Russia, the Baltic Spit, and the German heritage of small seaside towns. The atmosphere of these places eliminates hustle and immerses you in the tranquility of nature and the scent of the cool steel sea."
+            ],
+            "url": {
+                "adress": "https://park-kosa.ru",
+                "name": "Official website - Park Kosa"
             },
-            {
-                "id": "4",
-                "name": "Altai",
-                "imgPath": "/public/sprint-3-images/place-altai.jpg",
-                "additionalInfo": "Altai is famous for its mountains and rich natural diversity.",
-                "aboutMe": [
-                    "Altai is one of the most beautiful places in Russia. Primarily because of the mountains: if you drive along the ridge, you will see slopes covered with pines, mountain rivers, and lakes. And if you open your car windows, you can experience the invisible wonder of these places — the mountain air.",
-                    "The climate in Altai is temperate, so it is best to visit in summer. This way, you will see all the diversity of local flora and fauna. Elk roam the forests of Altai, eagles soar above the ridges, and deer graze on the plains. And the famous Pallas’s cats are also inhabitants of the Altai region."
-                ],
-                "url": {
-                    "adress": "https://altai-tour.ru",
-                    "name": "Tourism portal - Altai Travel"
-                }
+             "language": "en"
+        },
+        {
+            "id": "1",
+            "name": "Kola Peninsula",
+            "imgPath": "/public/sprint-3-images/place-kolsky.jpg",
+            "additionalInfo": "The Kola Peninsula impresses with its northern landscapes.",
+            "aboutMe": [
+                "Almost the entire peninsula lies beyond the Arctic Circle. The Sami tundra, with taiga to the south and the Arctic Ocean masquerading as the Barents Sea to the north.",
+                "Here you can see the northern lights, endless snowy expanses, and mighty rivers cutting through the tundra."
+            ],
+            "url": {
+                "adress": "https://park-kolsky.ru",
+                "name": "Information portal - Kola Peninsula"
             },
-            {
-                "id": "5",
-                "name": "Karelia",
-                "imgPath": "/public/sprint-3-images/place-karelia.jpg",
-                "additionalInfo": "Karelia is famous for its picturesque lakes and dense forests.",
-                "aboutMe": [
-                    "Karelia is the land of a thousand lakes and pristine forests. Here you can enjoy solitude and the silence of nature.",
-                    "Rare animals live in Karelia’s vast expanses: brown bears, lynxes, and reindeer. In autumn, the forests are especially beautiful — dressed in golden and crimson hues."
-                ],
-                "url": {
-                    "adress": "https://karelia.ru",
-                    "name": "Official website - Travel in Karelia"
-                }
+             "language": "en"
+        },
+        {
+            "id": "4",
+            "name": "Altai",
+            "imgPath": "/public/sprint-3-images/place-altai.jpg",
+            "additionalInfo": "Altai is famous for its mountains and rich natural diversity.",
+            "aboutMe": [
+                "Altai is one of the most beautiful places in Russia. Primarily because of the mountains: if you drive along the ridge, you will see slopes covered with pines, mountain rivers, and lakes. And if you open your car windows, you can experience the invisible wonder of these places — the mountain air.",
+                "The climate in Altai is temperate, so it is best to visit in summer. This way, you will see all the diversity of local flora and fauna. Elk roam the forests of Altai, eagles soar above the ridges, and deer graze on the plains. And the famous Pallas’s cats are also inhabitants of the Altai region."
+            ],
+            "url": {
+                "adress": "https://altai-tour.ru",
+                "name": "Tourism portal - Altai Travel"
             },
-            {
-                "id": "6",
-                "name": "Winter Baikal",
-                "imgPath": "/public/sprint-3-images/place-winter-baikal.jpg",
-                "additionalInfo": "Winter Baikal is a magical place with icy landscapes.",
-                "aboutMe": [
-                    "In winter, Baikal turns into a true icy world. The transparent ice allows you to see the lake bottom several meters down.",
-                    "Unique festivals are held here: skating races, ice fishing, and even car races across the frozen lake surface."
-                ],
-                "url": {
-                    "adress": "https://baikalmile.com",
-                    "name": "Festival - Baikal Mile"
-                }
+             "language": "en"
+        },
+        {
+            "id": "5",
+            "name": "Karelia",
+            "imgPath": "/public/sprint-3-images/place-karelia.jpg",
+            "additionalInfo": "Karelia is famous for its picturesque lakes and dense forests.",
+            "aboutMe": [
+                "Karelia is the land of a thousand lakes and pristine forests. Here you can enjoy solitude and the silence of nature.",
+                "Rare animals live in Karelia’s vast expanses: brown bears, lynxes, and reindeer. In autumn, the forests are especially beautiful — dressed in golden and crimson hues."
+            ],
+            "url": {
+                "adress": "https://karelia.ru",
+                "name": "Official website - Travel in Karelia"
             },
-            {
-                "id": "7",
-                "name": "Sochi",
-                "imgPath": "/public/sprint-3-images/photo-grid-sochi.jpg",
-                "additionalInfo": "Sochi is a resort city with a mild climate and picturesque landscapes.",
-                "aboutMe": [
-                    "Sochi is not just the sea and beaches. There are majestic Caucasus Mountains, hot springs, and nature reserves with unique flora and fauna.",
-                    "The city became famous thanks to the 2014 Olympic Games. Today, it attracts tourists all year round — from summer holidays on the Black Sea to winter ski resorts."
-                ],
-                "url": {
-                    "adress": "https://sochi-travel.ru",
-                    "name": "Travel guide - Sochi attractions"
-                }
-            }
-        ]
-    }
+             "language": "en"
+        },
+        {
+            "id": "6",
+            "name": "Winter Baikal",
+            "imgPath": "/public/sprint-3-images/place-winter-baikal.jpg",
+            "additionalInfo": "Winter Baikal is a magical place with icy landscapes.",
+            "aboutMe": [
+                "In winter, Baikal turns into a true icy world. The transparent ice allows you to see the lake bottom several meters down.",
+                "Unique festivals are held here: skating races, ice fishing, and even car races across the frozen lake surface."
+            ],
+            "url": {
+                "adress": "https://baikalmile.com",
+                "name": "Festival - Baikal Mile"
+            },
+             "language": "en"
+        },
+        {
+            "id": "7",
+            "name": "Sochi",
+            "imgPath": "/public/sprint-3-images/photo-grid-sochi.jpg",
+            "additionalInfo": "Sochi is a resort city with a mild climate and picturesque landscapes.",
+            "aboutMe": [
+                "Sochi is not just the sea and beaches. There are majestic Caucasus Mountains, hot springs, and nature reserves with unique flora and fauna.",
+                "The city became famous thanks to the 2014 Olympic Games. Today, it attracts tourists all year round — from summer holidays on the Black Sea to winter ski resorts."
+            ],
+            "url": {
+                "adress": "https://sochi-travel.ru",
+                "name": "Travel guide - Sochi attractions"
+            },
+             "language": "en"
+        }
+    ]
 }

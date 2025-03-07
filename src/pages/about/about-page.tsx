@@ -13,14 +13,14 @@ import { ErrorPage } from "./";
 
 export default function AboutPage() {
     const { index } = useLocation().state || "-1";
-    const { t, i18n } = useTranslation();
+    const { i18n } = useTranslation();
     const [page, setPage] = useState<number>(Number(index));
 
     const { data: dataItem, error, isLoading, isError } = useQuery({
         queryKey: ["items", "list", i18n.language, { page }],
         queryFn: meta => fetchDataApi.getItemsAbout({ language: i18n.language, page }, meta)
     });
-
+    
     if (isError) return <ErrorPage error={error} />
 
     if (isLoading) return (

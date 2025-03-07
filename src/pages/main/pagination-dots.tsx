@@ -24,7 +24,7 @@ export default function PaginationDots({ carouselIndex, setCarouselIndex, fromFe
         <div className="flex w-full justify-center gap-2 mt-4">
             {dataItems?.map((data, index) => {
                 return <button
-                    key={data.id}
+                    key={`${data.id}-${index}`}
                     onClick={() => setCarouselIndex(index)}
                     className={clsx("h-5 w-5 transition-colors hover:cursor-pointer ",
                         `${index === carouselIndex ? "bg-neutral-50 dark:bg-neutral-800" : "bg-neutral-500"}`,

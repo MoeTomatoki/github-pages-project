@@ -8,24 +8,24 @@ export const fetchDataApi = {
         { language }: { language: string },
         { signal }: { signal: AbortSignal }
     ) => {
-        return fetch(`${BASE_URL}/${language}`, {
-            signal
-        }).then(res => {
-            if (!res.ok) {
-                throw new Error(`Ошибка загрузки данных. Код: ${res.status}`);
-            }
-            return res.json() as Promise<Item<ObjFromData>>;
-        }).then((data) => {
-            return data.items as Promise<Data>;
-        }).catch((err) => {
-            throw err;
-        });
+        return fetch(`${BASE_URL}/items?language=${language}`, {
+            signal,
+        })
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error(`Ошибка загрузки данных. Код: ${res.status}`);
+                }
+                return res.json() as Promise<Data>;
+            })
+            .catch((err) => {
+                throw err;
+            });
     },
     getItemsAbout: (
-        { language, page  }: { language: string, page: number },
+        { language, page }: { language: string, page: number },
         { signal }: { signal: AbortSignal }
     ) => {
-        return fetch(`${BASE_URL}/${language}/items?_page=${page + 1}&_per_page=1`, {
+        return fetch(`${BASE_URL}/items?language=${language}&_page=${page + 1}&_per_page=1`, {
             signal
         }).then(res => {
             if (!res.ok) {
