@@ -2,7 +2,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 const resources = {
-    en: {
+    eng: {
         translation: {
             "Путешествия по России": "Traveling in Russia",
             "Настоящая страна не в выпусках новостей, а здесь.": "The real country is not in the news releases, but here.",
@@ -18,7 +18,23 @@ const resources = {
             "Путешествия": "Travel"
         },
     },
-    ru: {
+    kor: {
+        translation: {
+            "Путешествия по России": "러시아 여행",
+            "Настоящая страна не в выпусках новостей, а здесь.": "진짜 나라는 뉴스에 나오는 것이 아니라 여기 있습니다.",
+
+            "Номер страницы:": "페이지 번호:",
+            "Хочешь узнать большего? Ты всегда можешь связаться с нами!": "더 알고 싶으세요? 언제든지 저희와 연락할 수 있습니다!",
+            "Связаться с нами": "저희와 연락하기",
+
+            "Карты": "지도",
+            "Погода": "날씨",
+            "Расписание": "일정",
+            "Календарь": "일정표",
+            "Путешествия": "여행"
+        },
+    },
+    rus: {
         translation: {
             "Путешествия по России": "Путешествия по России",
             "Настоящая страна не в выпусках новостей, а здесь.": "Настоящая страна не в выпусках новостей, а здесь.",
@@ -40,7 +56,7 @@ const userLanguage = localStorage.getItem("language");
 i18n.use(initReactI18next).init({
     resources,
     lng: userLanguage,
-    fallbackLng: 'ru',
+    fallbackLng: 'rus',
     interpolation: {
         escapeValue: false,
     },

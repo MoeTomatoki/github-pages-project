@@ -8,7 +8,7 @@ import { useState } from "react";
 import { themeCheck, themeSwitch } from "./theme";
 import clsx from "clsx";
 
-const LANGUAGES = ["en", "ru",]
+const LANGUAGES = ["eng", "kor", "rus"]
 const userLanguage = localStorage.getItem("language");
 
 export default function Header() {
@@ -21,8 +21,16 @@ export default function Header() {
         setIsMenuOpen(!isMenuOpen);
     };
 
-    const hangleClick = (isMobile? : boolean) => {
-        if (isMobile) return
+    const hangleClick = (e? : React.MouseEvent<HTMLButtonElement>) => {
+        if (e) {
+            const buttonText = (e.target as HTMLButtonElement).textContent;
+            if (!buttonText || buttonText.toLocaleLowerCase() === language) return
+            const currentLang = buttonText.toLocaleLowerCase()
+            i18n.changeLanguage(currentLang)
+            setLanguage(currentLang)
+            localStorage.setItem("language", currentLang);
+            return
+        }
         const currentLang = LANGUAGES.findIndex(lang => lang === language)
         const nextLang = LANGUAGES.length - 1 === currentLang ? 0 : currentLang + 1
         i18n.changeLanguage(LANGUAGES[nextLang]);
@@ -69,24 +77,33 @@ export default function Header() {
                             <ButtonUI onClick={() => themeSwitch({ setTheme })}>
                                 {theme === "light" ? <SunIcon className="h-6 w-6" /> : <MoonIcon className="h-6 w-6" />}
                             </ButtonUI>
-                            <span
-                                onClick={() => hangleClick(language === "ru")}
-                                className={clsx(language === "en"
+                            <button
+                                onClick={(e) => hangleClick(e)}
+                                className={clsx(language !== "rus"
                                     ? "opacity-80 hover:cursor-not-allowed"
                                     : "underline font-bold hover:cursor-pointer"
                                 )}
                             >
-                                RU
-                            </span>
-                            <span
-                                onClick={() => hangleClick(language === "en")}
-                                className={clsx(language === "ru"
+                                RUS
+                            </button>
+                            <button
+                                onClick={(e) => hangleClick(e)}
+                                className={clsx(language !== "eng"
                                     ? "opacity-80 hover:cursor-not-allowed"
                                     : "underline font-bold hover:cursor-pointer"
                                 )}
                             >
                                 ENG
-                            </span>
+                            </button>
+                            <button
+                                onClick={(e) => hangleClick(e)}
+                                className={clsx(language !== "kor"
+                                    ? "opacity-80 hover:cursor-not-allowed"
+                                    : "underline font-bold hover:cursor-pointer"
+                                )}
+                            >
+                                KOR
+                            </button>
                         </div>
                     </motion.div>
                 )}
