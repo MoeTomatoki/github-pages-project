@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 import { ObjFromData } from "../../shared/types/dataFromServer";
 import { fetchDataApi } from "../../shared/api/fetchData";
@@ -12,11 +13,12 @@ import { ErrorPage } from "./";
 
 export default function AboutPage() {
     const { index } = useLocation().state || "-1";
+    const { t, i18n } = useTranslation();
     const [page, setPage] = useState<number>(Number(index));
 
     const { data: dataItem, error, isLoading, isError } = useQuery({
-        queryKey: ["items", "list", { page }],
-        queryFn: meta => fetchDataApi.getItemsAbout({ page }, meta)
+        queryKey: ["items", "list", i18n.language, { page }],
+        queryFn: meta => fetchDataApi.getItemsAbout({ language: i18n.language, page }, meta)
     });
 
     if (isError) return <ErrorPage error={error} />

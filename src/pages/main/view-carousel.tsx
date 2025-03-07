@@ -1,14 +1,17 @@
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import { UseQueryResult } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 import { Data } from "../../shared/types/dataFromServer";
 import { Loader, ShadowEdges } from "../../shared/ui/index";
 
 export default function ViewCarousel({ carouselIndex, fromFetchQuery }: { carouselIndex: number, fromFetchQuery: UseQueryResult<Data, Error> }) {
+    const { t } = useTranslation();
+
     const { data, error, isLoading, status, isError } = fromFetchQuery;
     const dataItems = status !== "success" ? Array(3).fill({}) : data;
-    
+
     return (
         <>
             {dataItems?.map((data, index) => {
@@ -38,12 +41,12 @@ export default function ViewCarousel({ carouselIndex, fromFetchQuery }: { carous
                             onPointerDownCapture={(e) => e.stopPropagation()}
                             className="text-center text-neutral-50 hover:cursor-pointer"
                         >
-                            <h1 className="text-md md:text-4xl font-extrabold md:font-semibold text-neutral-300">{name}</h1>
-                            <h3 className="text-sm md:text-xl mt-1 md:mt-2 max-w-xs md:max-w-md break-words text-neutral-200">{additionalInfo}</h3>
+                            <h1 className="text-md md:text-4xl font-extrabold md:font-semibold text-neutral-300">{t(name)}</h1>
+                            <h3 className="text-sm md:text-xl mt-1 md:mt-2 max-w-xs md:max-w-md break-words text-neutral-200">{t(additionalInfo)}</h3>
                         </NavLink>
                     </div>
                     {isLoading && <Loader />}
-                    {isError && <div className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">{error.message}</div>}
+                    {isError && <div className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">{t(error.message)}</div>}
                     <ShadowEdges />
                 </motion.div>
             })}

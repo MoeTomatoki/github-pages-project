@@ -1,13 +1,14 @@
 import { NavLink } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 import { BurgerIcon, LogoIcon, MoonIcon, SunIcon } from "../../shared/icons/";
 import { ButtonUI } from "../../shared/ui/";
 import { useState } from "react";
 import { themeCheck, themeSwitch } from "./theme";
 
-
 export default function Header() {
+    const { i18n } = useTranslation();
     const [theme, setTheme] = useState<string>(themeCheck);
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
@@ -27,10 +28,24 @@ export default function Header() {
                 <ButtonUI onClick={() => themeSwitch({ setTheme })}>
                     {theme === "light" ? <SunIcon className="h-6 w-6" /> : <MoonIcon className="h-6 w-6" />}
                 </ButtonUI>
-                <span className="underline font-bold hover:cursor-pointer">RU</span>
-                <span className="opacity-80 hover:cursor-not-allowed">ENG</span>
-            </div>
 
+                {/* <span className="underline font-bold hover:cursor-pointer">RU</span>
+                <span className="opacity-80 hover:cursor-not-allowed">ENG</span> */}
+
+                <ButtonUI
+                    onClick={() => i18n.changeLanguage("en")}
+                    className="underline font-bold hover:cursor-pointer"
+                >
+                    English
+                </ButtonUI>
+                <ButtonUI
+                    onClick={() => i18n.changeLanguage("ru")}
+                    className="opacity-80 hover:cursor-pointer"
+                >
+                    Русский
+                </ButtonUI>
+            </div>
+            
             <button
                 onClick={toggleMenu}
                 className="flex ml-auto md:hidden focus:outline-none"

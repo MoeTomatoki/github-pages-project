@@ -5,17 +5,27 @@ const BASE_URL = "http://localhost:3000";
 
 export const fetchDataApi = {
     getItemsMain: (
+        { language }: { language: string },
         { signal }: { signal: AbortSignal }
     ) => {
-        return fetch(`${BASE_URL}/items`, {
+        return fetch(`${BASE_URL}/${language}`, {
             signal
-        }).then(res => res.json() as Promise<Data>);
+        }).then(res => {
+            if (!res.ok) {
+                throw new Error(`Ошибка загрузки данных. Код: ${res.status}`);
+            }
+            return res.json() as Promise<Item<ObjFromData>>;
+        }).then((data) => {
+            return data.items as Promise<Data>;
+        }).catch((err) => {
+            throw err;
+        });
     },
     getItemsAbout: (
-        { page }: { page: number },
+        { language, page  }: { language: string, page: number },
         { signal }: { signal: AbortSignal }
     ) => {
-        return fetch(`${BASE_URL}/items?_page=${page + 1}&_per_page=1`, {
+        return fetch(`${BASE_URL}/${language}/items?_page=${page + 1}&_per_page=1`, {
             signal
         }).then(res => {
             if (!res.ok) {
