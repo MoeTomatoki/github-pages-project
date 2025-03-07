@@ -1,13 +1,15 @@
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import { useQueryClient, UseQueryResult } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 import { PaginationDots, useCarousel, ViewCarousel } from "./";
 import { Data } from "../../shared/types/dataFromServer";
 
 export default function Gallery({ fromFetchQuery, className }: { fromFetchQuery: UseQueryResult<Data, Error>, className: string }) { 
     const queryClient = useQueryClient();
-    const dataItems = queryClient.getQueryData(["items", "list"]) as Data;
+    const { i18n } = useTranslation();
+    const dataItems = queryClient.getQueryData(["items", "list", i18n.language]) as Data;
     const carouselLength = dataItems ? dataItems.length : 3;
 
     const {

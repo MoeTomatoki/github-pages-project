@@ -6,15 +6,29 @@ import { BurgerIcon, LogoIcon, MoonIcon, SunIcon } from "../../shared/icons/";
 import { ButtonUI } from "../../shared/ui/";
 import { useState } from "react";
 import { themeCheck, themeSwitch } from "./theme";
+import clsx from "clsx";
+
+const LANGUAGES = ["en", "ru",]
+const userLanguage = localStorage.getItem("language");
 
 export default function Header() {
     const { i18n } = useTranslation();
     const [theme, setTheme] = useState<string>(themeCheck);
+    const [language, setLanguage] = useState<string>(userLanguage ?? i18n.language);
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+
+    const hangleClick = (isMobile? : boolean) => {
+        if (isMobile) return
+        const currentLang = LANGUAGES.findIndex(lang => lang === language)
+        const nextLang = LANGUAGES.length - 1 === currentLang ? 0 : currentLang + 1
+        i18n.changeLanguage(LANGUAGES[nextLang]);
+        setLanguage(LANGUAGES[nextLang])
+        localStorage.setItem("language", LANGUAGES[nextLang]);
+    }
 
     return (
         <header className="flex items-center px-10 text-neutral-50 dark:text-black">
@@ -25,27 +39,17 @@ export default function Header() {
                 <LogoIcon className="w-48 h-20" />
             </NavLink>
             <div className="hidden md:flex gap-4 ml-auto text-xl">
-                <ButtonUI onClick={() => themeSwitch({ setTheme })}>
+                <ButtonUI onClick={() => themeSwitch({ setTheme })} className="hover:cursor-pointer">
                     {theme === "light" ? <SunIcon className="h-6 w-6" /> : <MoonIcon className="h-6 w-6" />}
                 </ButtonUI>
-
-                {/* <span className="underline font-bold hover:cursor-pointer">RU</span>
-                <span className="opacity-80 hover:cursor-not-allowed">ENG</span> */}
-
                 <ButtonUI
-                    onClick={() => i18n.changeLanguage("en")}
-                    className="underline font-bold hover:cursor-pointer"
+                    onClick={() => hangleClick()}
+                    className="font-extrabold hover:cursor-pointer"
                 >
-                    English
-                </ButtonUI>
-                <ButtonUI
-                    onClick={() => i18n.changeLanguage("ru")}
-                    className="opacity-80 hover:cursor-pointer"
-                >
-                    Русский
+                    {language.toLocaleUpperCase()}
                 </ButtonUI>
             </div>
-            
+
             <button
                 onClick={toggleMenu}
                 className="flex ml-auto md:hidden focus:outline-none"
@@ -65,8 +69,24 @@ export default function Header() {
                             <ButtonUI onClick={() => themeSwitch({ setTheme })}>
                                 {theme === "light" ? <SunIcon className="h-6 w-6" /> : <MoonIcon className="h-6 w-6" />}
                             </ButtonUI>
-                            <span className="underline font-bold hover:cursor-pointer">RU</span>
-                            <span className="opacity-80 hover:cursor-not-allowed">ENG</span>
+                            <span
+                                onClick={() => hangleClick(language === "ru")}
+                                className={clsx(language === "en"
+                                    ? "opacity-80 hover:cursor-not-allowed"
+                                    : "underline font-bold hover:cursor-pointer"
+                                )}
+                            >
+                                RU
+                            </span>
+                            <span
+                                onClick={() => hangleClick(language === "en")}
+                                className={clsx(language === "ru"
+                                    ? "opacity-80 hover:cursor-not-allowed"
+                                    : "underline font-bold hover:cursor-pointer"
+                                )}
+                            >
+                                ENG
+                            </span>
                         </div>
                     </motion.div>
                 )}

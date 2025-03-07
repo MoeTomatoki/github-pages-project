@@ -13,7 +13,7 @@ import { ErrorPage } from "./";
 
 export default function AboutPage() {
     const { index } = useLocation().state || "-1";
-    const { i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
     const [page, setPage] = useState<number>(Number(index));
 
     const { data: dataItem, error, isLoading, isError } = useQuery({
@@ -47,7 +47,7 @@ export default function AboutPage() {
                 <div className="text-center md:mb-8">
                     <h1 className="text-4xl font-bold text-pretty">{currentData?.name}</h1>
                     <p className="text-neutral-400 dark:text-neutral-600 mt-2">
-                        <span>Номер страницы: {page + 1}</span>
+                        <span>{t("Номер страницы:")} {page + 1}</span>
                     </p>
                 </div>
 
@@ -89,13 +89,13 @@ export default function AboutPage() {
 
                 <div className="mt-4 md:mt-48 flex flex-col items-center">
                     <p className="text-neutral-400 dark:text-neutral-600 text-sm">
-                        Хочешь узнать большего? Ты всегда можешь связаться с нами!
+                        {t("Хочешь узнать большего? Ты всегда можешь связаться с нами!")}
                     </p>
                     <a
                         href="#"
                         className="text-pretty hover:underline mt-2"
                     >
-                        Связаться с нами
+                        {t("Связаться с нами")}
                     </a>
                 </div>
 
@@ -120,7 +120,7 @@ function Img({ currentData }: { currentData: ObjFromData | undefined }) {
     )
 }
 
-export function Text({ currentData }: { currentData: ObjFromData | undefined }) {
+function Text({ currentData }: { currentData: ObjFromData | undefined }) {
     return (
         <div className="mt-2 text-base md:text-xl font-thin indent-8 text-justify">
             {currentData?.aboutMe.map((paragraph, index) => <p

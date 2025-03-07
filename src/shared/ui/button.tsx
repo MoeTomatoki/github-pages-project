@@ -13,7 +13,7 @@ export default function ButtonUI({ children, className, onClick, disabled }: But
         <button
             type="button"
             className={clsx(`
-                font-medium rounded-lg text-sm px-5 py-1 focus:outline-none focus:ring-2 
+                rounded-lg text-sm px-5 py-1 focus:outline-none focus:ring-2 
                 dark:text-neutral-800 dark:bg-neutral-100 border dark:border-neutral-300 
                 dark:hover:bg-neutral-200 dark:focus:ring-neutral-200 
                 bg-neutral-800 text-neutral-50 border-neutral-600 hover:bg-neutral-700 
