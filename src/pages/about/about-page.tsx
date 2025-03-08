@@ -8,19 +8,20 @@ import { useTranslation } from "react-i18next";
 import { ObjFromData } from "../../shared/types/dataFromServer";
 import { fetchDataApi } from "../../shared/api/fetchData";
 import { Loader } from "../../shared/ui";
-import { ButtonUI } from "../../shared/ui/";
+import { ButtonUI, ModalUI } from "../../shared/ui/";
 import { ErrorPage } from "./";
 
 export default function AboutPage() {
     const { index } = useLocation().state || "-1";
     const { t, i18n } = useTranslation();
     const [page, setPage] = useState<number>(Number(index));
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const { data: dataItem, error, isLoading, isError } = useQuery({
         queryKey: ["items", "list", i18n.language, { page }],
         queryFn: meta => fetchDataApi.getItemsAbout({ language: i18n.language, page }, meta)
     });
-    
+
     if (isError) return <ErrorPage error={error} />
 
     if (isLoading) return (
@@ -94,12 +95,16 @@ export default function AboutPage() {
                     <a
                         href="#"
                         className="text-pretty hover:underline mt-2"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setIsModalOpen(true);
+                        }}
                     >
                         {t("Связаться с нами")}
                     </a>
                 </div>
-
             </div>
+            <ModalUI isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </motion.div>
     )
 }

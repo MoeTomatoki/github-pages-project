@@ -42,7 +42,7 @@ export default function ViewCarousel({ carouselIndex, fromFetchQuery }: { carous
                             className="text-center text-neutral-50 hover:cursor-pointer"
                         >
                             <h1 className="text-md md:text-4xl font-extrabold md:font-semibold text-neutral-300">{t(name)}</h1>
-                            <h3 className="text-sm md:text-xl mt-1 md:mt-2 max-w-xs md:max-w-md break-words text-neutral-200">{t(additionalInfo)}</h3>
+                            <h3 className="hidden md:flex md:text-xl mt-1 md:mt-2 max-w-xs md:max-w-md break-words text-neutral-200">{t(additionalInfo)}</h3>
                         </NavLink>
                     </div>
                     {isLoading && <Loader />}

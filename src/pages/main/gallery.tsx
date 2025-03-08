@@ -1,15 +1,13 @@
 import clsx from "clsx";
 import { motion } from "framer-motion";
-import { useQueryClient, UseQueryResult } from "@tanstack/react-query";
-import { useTranslation } from "react-i18next";
+import { UseQueryResult } from "@tanstack/react-query";
 
 import { PaginationDots, useCarousel, ViewCarousel } from "./";
 import { Data } from "../../shared/types/dataFromServer";
+import { Loader } from "../../shared/ui";
 
-export default function Gallery({ fromFetchQuery, className }: { fromFetchQuery: UseQueryResult<Data, Error>, className: string }) { 
-    const queryClient = useQueryClient();
-    const { i18n } = useTranslation();
-    const dataItems = queryClient.getQueryData(["items", "list", i18n.language]) as Data;
+export default function Gallery({ fromFetchQuery, className }: { fromFetchQuery: UseQueryResult<Data, Error>, className: string }) {
+    const { data: dataItems, isLoading, status } = fromFetchQuery
     const carouselLength = dataItems ? dataItems.length : 3;
 
     const {
@@ -33,14 +31,22 @@ export default function Gallery({ fromFetchQuery, className }: { fromFetchQuery:
                 }}
                 onDragStart={onDragStart}
                 onDragEnd={onDragEnd}
-                style={{ 
+                style={{
                     x: dragX,
                 }}
-                className={clsx(className, "flex mt-10 items-center cursor-grab active:cursor-grabbing")}
+                className={clsx(className, "flex mt-10 md:mt-2 items-center cursor-grab active:cursor-grabbing")}
             >
-                <ViewCarousel carouselIndex={carouselIndex} fromFetchQuery={fromFetchQuery}/>
+                <ViewCarousel carouselIndex={carouselIndex} fromFetchQuery={fromFetchQuery} />
             </motion.div>
-            <PaginationDots carouselIndex={carouselIndex} setCarouselIndex={setCarouselIndex} fromFetchQuery={fromFetchQuery}/>
+            <PaginationDots carouselIndex={carouselIndex} setCarouselIndex={setCarouselIndex} fromFetchQuery={fromFetchQuery} />
+            <div className="flex md:hidden flex-col items-center mt-4">
+                {isLoading || status !== "success"
+                    ? <Loader />
+                    : <div className="text-lg mt-8 text-justify text-neutral-400 dark:text-neutral-600">
+                        {dataItems[carouselIndex].additionalInfo}
+                    </div>
+                }
+            </div>
         </>
     );
 }

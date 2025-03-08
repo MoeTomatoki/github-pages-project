@@ -9,12 +9,12 @@ export default function MainPage() {
     const { t, i18n } = useTranslation();
     const fromFetchQuery = useQuery({
         queryKey: ["items", "list", i18n.language],
-        queryFn: meta => fetchDataApi.getItemsMain({language: i18n.language}, meta)
+        queryFn: meta => fetchDataApi.getItemsMain({ language: i18n.language }, meta)
     });
     return (
         <div className="px-[25vw]">
             <div className="flex justify-center">
-                <div className="flex flex-col justify-center items-center mt-4 max-w-xl text-base md:text-3xl text-center text-neutral-50 dark:text-neutral-800">
+                <div className="flex flex-col justify-center items-center max-w-xl text-base md:text-3xl text-center text-neutral-50 dark:text-neutral-800">
                     <h1 className={clsx("text-3xl md:text-5xl font-bold", i18n.language === "kor" ? "max-w-32 md:max-w-48" : "max-w-sm")}>
                         {t("Путешествия по России")}
                     </h1>
@@ -24,6 +24,6 @@ export default function MainPage() {
                 </div>
             </div>
             {<Gallery fromFetchQuery={fromFetchQuery} className="mt-4" />}
-        </div>
+        </div >
     )
 }

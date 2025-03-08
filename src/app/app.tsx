@@ -22,6 +22,7 @@ export default function App() {
                 </main>
                 <Footer />
             </div>
+            <div id="portal-root"></div>
         </QueryClientProvider>
     );
 }
