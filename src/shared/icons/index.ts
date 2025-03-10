@@ -8,5 +8,18 @@ import CalendarIcon from "./calendar-icon";
 import ScheduleIcon from "./schedule-icon";
 import TravelIcon from "./travel-icon";
 import CrossIcon from "./cross-icon";
+import CorrectIcon from "./correct-icon";
 
-export { LogoIcon, SunIcon, MoonIcon, BurgerIcon, MapIcon, WeatherIcon, CalendarIcon, ScheduleIcon, TravelIcon, CrossIcon }
+export {
+  LogoIcon,
+  SunIcon,
+  MoonIcon,
+  BurgerIcon,
+  MapIcon,
+  WeatherIcon,
+  CalendarIcon,
+  ScheduleIcon,
+  TravelIcon,
+  CrossIcon,
+  CorrectIcon,
+};

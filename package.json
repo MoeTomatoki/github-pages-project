@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "prettier": "npx prettier . --write",
     "serv": "npx json-server src/shared/api/db.json"
   },
   "dependencies": {
@@ -15,6 +16,7 @@
     "@tanstack/react-query": "^5.66.11",
     "clsx": "^2.1.1",
     "framer-motion": "^12.4.4",
+    "google-libphonenumber": "^3.2.40",
     "i18next": "^24.2.2",
     "json-server": "^1.0.0-beta.3",
     "react": "^19.0.0",
@@ -26,6 +28,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
+    "@types/google-libphonenumber": "^7.4.30",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
@@ -33,6 +36,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
+    "prettier": "3.5.3",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.22.0",
     "vite": "^6.1.0"
