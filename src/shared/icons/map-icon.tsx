@@ -1,22 +1,17 @@
 import clsx from "clsx";
+import { IconProps } from "../types/icon-props";
 
 export default function MapIcon({
   className = "",
   currentColor = "currentColor",
-}: {
-  className?: string;
-  currentColor?: string;
-}) {
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      className={clsx(
-        className === undefined ? "" : className,
-        "text-neutral-800 dark:text-neutral-100",
-      )}
+      className={clsx("text-neutral-800 dark:text-neutral-100", className)}
     >
       <g
         fill="none"

@@ -1,5 +1,5 @@
-import { Data, ObjFromData } from "../types/dataFromServer";
-import { Item } from "../types/apiItem";
+import { Data, ObjFromData } from "../../shared/types/data-from-server";
+import { Item } from "../../shared/types/api-item";
 
 const BASE_URL = "http://localhost:3000";
 

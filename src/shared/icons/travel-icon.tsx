@@ -1,12 +1,10 @@
 import clsx from "clsx";
+import { IconProps } from "../types/icon-props";
 
 export default function TravelIcon({
   className = "",
   currentColor = "currentColor",
-}: {
-  className?: string;
-  currentColor?: string;
-}) {
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -14,10 +12,7 @@ export default function TravelIcon({
       height="16"
       viewBox="0 0 16 16"
       transform="rotate(30)"
-      className={clsx(
-        className === undefined ? "" : className,
-        "text-neutral-800 dark:text-neutral-100",
-      )}
+      className={clsx("text-neutral-800 dark:text-neutral-100", className)}
     >
       <path
         fill={currentColor}

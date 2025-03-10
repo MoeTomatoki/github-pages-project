@@ -1,17 +1,16 @@
+import { IconProps } from "../types/icon-props";
+
 export default function SunIcon({
   className = "",
   currentColor = "currentColor",
-}: {
-  className?: string;
-  currentColor?: string;
-}) {
+}: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="200"
       height="200"
       viewBox="0 0 1728 1792"
-      className={className === undefined ? "" : className}
+      className={className}
     >
       <path
         fill={currentColor}

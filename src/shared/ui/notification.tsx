@@ -2,15 +2,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { createPortal } from "react-dom";
 import { CorrectIcon } from "../icons";
+import clsx from "clsx";
 
-interface NotificationProps {
+type NotificationProps = {
   isVisible: boolean;
   message: string;
-}
+  className?: string;
+};
 
 export default function Notification({
   isVisible,
   message,
+  className,
 }: NotificationProps) {
   const { t } = useTranslation();
 
@@ -22,7 +25,10 @@ export default function Notification({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-4 right-4 bg-neutral-800 text-neutral-50 px-4 py-3 rounded-lg shadow-lg flex items-center space-x-2 z-50"
+          className={clsx(
+            "fixed bottom-4 right-4 bg-neutral-800 text-neutral-50 px-4 py-3 rounded-lg shadow-lg flex items-center space-x-2 z-50",
+            className,
+          )}
         >
           <CorrectIcon className="w-5 h-5 text-green-400" />
           <span>{t(message)}</span>

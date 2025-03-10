@@ -1,15 +1,12 @@
-import clsx from "clsx";
+import { IconProps } from "../types/icon-props";
 
 export default function CorrectIcon({
   className = "",
   currentColor = "currentColor",
-}: {
-  className?: string;
-  currentColor?: string;
-}) {
+}: IconProps) {
   return (
     <svg
-      className={clsx(className === undefined ? "" : className)}
+      className={className}
       xmlns="http://www.w3.org/2000/svg"
       width="48"
       height="48"
@@ -19,10 +16,10 @@ export default function CorrectIcon({
         <g fill="none">
           <g
             stroke="#fff"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="4"
-            clip-path="url(#ipSCheckCorrect1)"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="4"
+            clipPath="url(#ipSCheckCorrect1)"
           >
             <path d="M42 20v19a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3h21" />
             <path d="m16 20l10 8L41 7" />

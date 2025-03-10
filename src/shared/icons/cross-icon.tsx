@@ -1,15 +1,12 @@
-import clsx from "clsx";
+import { IconProps } from "../types/icon-props";
 
 export default function CrossIcon({
   className = "",
   currentColor = "currentColor",
-}: {
-  className?: string;
-  currentColor?: string;
-}) {
+}: IconProps) {
   return (
     <svg
-      className={clsx(className === undefined ? "" : className)}
+      className={className}
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"

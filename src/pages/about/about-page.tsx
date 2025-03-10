@@ -5,11 +5,12 @@ import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
-import { ObjFromData } from "../../shared/types/dataFromServer";
-import { fetchDataApi } from "../../shared/api/fetchData";
+import { ObjFromData } from "../../shared/types/data-from-server";
+import { fetchDataApi } from "../../features/data-fetch/hooks/fetchData";
 import { Loader, Notification } from "../../shared/ui";
-import { ButtonUI, ModalUI } from "../../shared/ui/";
+import { ButtonUI } from "../../shared/ui";
 import { ErrorPage } from "./";
+import Modal from "../../widgets/modal";
 
 export default function AboutPage() {
   const { index } = useLocation().state || "-1";
@@ -121,7 +122,7 @@ export default function AboutPage() {
           </a>
         </div>
       </div>
-      <ModalUI
+      <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         showNotification={showNotification}
@@ -134,7 +135,7 @@ export default function AboutPage() {
   );
 }
 
-function Img({ currentData }: { currentData: ObjFromData | undefined }) {
+function Img({ currentData }: { currentData?: ObjFromData }) {
   return (
     <div className="mt-4 text-neutral-300">
       <div
@@ -149,7 +150,7 @@ function Img({ currentData }: { currentData: ObjFromData | undefined }) {
   );
 }
 
-function Text({ currentData }: { currentData: ObjFromData | undefined }) {
+function Text({ currentData }: { currentData?: ObjFromData }) {
   return (
     <div className="mt-2 text-base md:text-xl font-thin indent-8 text-justify">
       {currentData?.aboutMe.map((paragraph, index) => (

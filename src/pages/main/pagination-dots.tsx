@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Dispatch, SetStateAction } from "react";
 import { UseQueryResult } from "@tanstack/react-query";
 
-import { Data } from "../../shared/types/dataFromServer";
+import { Data } from "../../shared/types/data-from-server";
 
 type DotsProps = {
   carouselIndex: number;

@@ -3,16 +3,15 @@ import { motion } from "framer-motion";
 import { UseQueryResult } from "@tanstack/react-query";
 
 import { PaginationDots, useCarousel, ViewCarousel } from "./";
-import { Data } from "../../shared/types/dataFromServer";
+import { Data } from "../../shared/types/data-from-server";
 import { Loader } from "../../shared/ui";
 
-export default function Gallery({
-  fromFetchQuery,
-  className,
-}: {
+type GalleryProps = {
   fromFetchQuery: UseQueryResult<Data, Error>;
   className: string;
-}) {
+};
+
+export default function Gallery({ fromFetchQuery, className }: GalleryProps) {
   const { data: dataItems, isLoading, status } = fromFetchQuery;
   const carouselLength = dataItems ? dataItems.length : 3;
 

@@ -3,16 +3,18 @@ import { NavLink } from "react-router-dom";
 import { UseQueryResult } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
-import { Data } from "../../shared/types/dataFromServer";
+import { Data } from "../../shared/types/data-from-server";
 import { Loader, ShadowEdges } from "../../shared/ui/index";
+
+type CarouselProps = {
+  carouselIndex: number;
+  fromFetchQuery: UseQueryResult<Data, Error>;
+};
 
 export default function ViewCarousel({
   carouselIndex,
   fromFetchQuery,
-}: {
-  carouselIndex: number;
-  fromFetchQuery: UseQueryResult<Data, Error>;
-}) {
+}: CarouselProps) {
   const { t } = useTranslation();
 
   const { data, error, isLoading, status, isError } = fromFetchQuery;
