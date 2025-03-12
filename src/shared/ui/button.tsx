@@ -1,24 +1,18 @@
 import clsx from "clsx";
-import { ReactNode } from "react";
+import React from "react";
 
 type ButtonProps = {
-  children: ReactNode;
-  type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
-  className?: string;
-  onClick: (e: any) => void;
-  disabled?: boolean;
-};
+  children: React.ReactNode;
+  className: string;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export default function ButtonUI({
   children,
   className,
-  onClick,
-  type,
-  disabled,
+  ...props
 }: ButtonProps) {
   return (
     <button
-      type={type ?? "button"}
       className={clsx(
         `
                 rounded-lg text-sm px-5 py-1 focus:outline-none focus:ring-2 
@@ -30,8 +24,7 @@ export default function ButtonUI({
             `,
         className,
       )}
-      onClick={onClick}
-      disabled={disabled}
+      {...props}
     >
       {children}
     </button>

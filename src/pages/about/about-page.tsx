@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 import { ObjFromData } from "../../shared/types/data-from-server";
-import { fetchDataApi } from "../../features/data-fetch/hooks/fetchData";
+import { fetchDataApi } from "../../features/data-fetch/api/fetchData";
 import { Loader, Notification } from "../../shared/ui";
 import { ButtonUI } from "../../shared/ui";
 import { ErrorPage } from "./";

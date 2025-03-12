@@ -3,7 +3,7 @@
     {
       "id": "132",
       "name": "Поезда «на собаках»",
-      "imgPath": "/public/sprint-3-images/cover-trains.jpg",
+      "imgPath": "/public/images/cover-trains.jpg",
       "additionalInfo": "По мотивам учебной темы о Транссибе — путешествие от столицы до Байкала на электричках.",
       "aboutMe": [
         "Поезда — один из самых популярных видов транспорта. Их ритмичное движение завораживает и дарит ощущение спокойствия.",
@@ -18,7 +18,7 @@
     {
       "id": "232",
       "name": "Куршская коса",
-      "imgPath": "/public/sprint-3-images/place-kosa.jpg",
+      "imgPath": "/public/images/place-kosa.jpg",
       "additionalInfo": "Захватывающий вид Куршской косы, известной своими живописными пейзажами.",
       "aboutMe": [
         "Здесь, посреди лесов и песчаных дюн, вы сможете увидеть два водных горизонта — спокойного Куршского залива с одной стороны и подёрнутого рябью волн Балтийского моря с другой. Уникальная природная зона на краю российского анклава.",
@@ -33,7 +33,7 @@
     {
       "id": "1",
       "name": "Кольский полуостров",
-      "imgPath": "/public/sprint-3-images/place-kolsky.jpg",
+      "imgPath": "/public/images/place-kolsky.jpg",
       "additionalInfo": "Кольский полуостров поражает своими видами северной природы.",
       "aboutMe": [
         "Почти весь полуостров находится за Полярным кругом. Саамская тундра, от которой на юг — тайга, а на север — Ледовитый океан, прикидывающийся Баренцевым морем.",
@@ -48,7 +48,7 @@
     {
       "id": "4",
       "name": "Алтай",
-      "imgPath": "/public/sprint-3-images/place-altai.jpg",
+      "imgPath": "/public/images/place-altai.jpg",
       "additionalInfo": "Алтай знаменит своими горами и богатым разнообразием природы.",
       "aboutMe": [
         "Алтай — одно из красивейших мест в России. В первую очередь из-за гор: если ехать вдоль хребта, вы увидите склоны, усыпанные соснами, горные реки и озёра. А если вы откроете в автомобиле окна, сможете познакомиться с невидимым чудом здешних мест — горным воздухом.",
@@ -63,7 +63,7 @@
     {
       "id": "5",
       "name": "Карелия",
-      "imgPath": "/public/sprint-3-images/place-karelia.jpg",
+      "imgPath": "/public/images/place-karelia.jpg",
       "additionalInfo": "Карелия славится своими живописными озёрами и густыми лесами.",
       "aboutMe": [
         "Карелия — край тысячи озёр и девственных лесов. Здесь можно насладиться уединением и тишиной природы.",
@@ -78,7 +78,7 @@
     {
       "id": "6",
       "name": "Зимний Байкал",
-      "imgPath": "/public/sprint-3-images/place-winter-baikal.jpg",
+      "imgPath": "/public/images/place-winter-baikal.jpg",
       "additionalInfo": "Зимний Байкал — волшебное место с ледяными пейзажами.",
       "aboutMe": [
         "Зимой Байкал превращается в настоящий ледяной мир. Прозрачный лёд позволяет увидеть дно озера на глубине нескольких метров.",
@@ -93,7 +93,7 @@
     {
       "id": "7",
       "name": "Сочи",
-      "imgPath": "/public/sprint-3-images/photo-grid-sochi.jpg",
+      "imgPath": "/public/images/photo-grid-sochi.jpg",
       "additionalInfo": "Сочи — курортный город с мягким климатом и живописными пейзажами.",
       "aboutMe": [
         "Сочи — это не только море и пляжи. Здесь находятся величественные Кавказские горы, горячие источники и заповедники с уникальной природой.",
@@ -108,7 +108,7 @@
     {
       "id": "132",
       "name": "Dog-powered trains",
-      "imgPath": "/public/sprint-3-images/cover-trains.jpg",
+      "imgPath": "/public/images/cover-trains.jpg",
       "additionalInfo": "A journey from the capital to Baikal by electric trains.",
       "aboutMe": [
         "Trains are one of the most popular modes of transport. Their rhythmic movement is mesmerizing and gives a sense of calm.",
@@ -123,7 +123,7 @@
     {
       "id": "232",
       "name": "Curonian Spit",
-      "imgPath": "/public/sprint-3-images/place-kosa.jpg",
+      "imgPath": "/public/images/place-kosa.jpg",
       "additionalInfo": "Breathtaking views of the Curonian Spit, known for its picturesque landscapes.",
       "aboutMe": [
         "Here, among forests and sand dunes, you can see two water horizons — the calm Curonian Lagoon on one side and the rippled waves of the Baltic Sea on the other. A unique natural area on the edge of the Russian enclave.",
@@ -138,7 +138,7 @@
     {
       "id": "1",
       "name": "Kola Peninsula",
-      "imgPath": "/public/sprint-3-images/place-kolsky.jpg",
+      "imgPath": "/public/images/place-kolsky.jpg",
       "additionalInfo": "The Kola Peninsula impresses with its northern landscapes.",
       "aboutMe": [
         "Almost the entire peninsula lies beyond the Arctic Circle. The Sami tundra, with taiga to the south and the Arctic Ocean masquerading as the Barents Sea to the north.",
@@ -153,7 +153,7 @@
     {
       "id": "4",
       "name": "Altai",
-      "imgPath": "/public/sprint-3-images/place-altai.jpg",
+      "imgPath": "/public/images/place-altai.jpg",
       "additionalInfo": "Altai is famous for its mountains and rich natural diversity.",
       "aboutMe": [
         "Altai is one of the most beautiful places in Russia. Primarily because of the mountains: if you drive along the ridge, you will see slopes covered with pines, mountain rivers, and lakes. And if you open your car windows, you can experience the invisible wonder of these places — the mountain air.",
@@ -168,7 +168,7 @@
     {
       "id": "5",
       "name": "Karelia",
-      "imgPath": "/public/sprint-3-images/place-karelia.jpg",
+      "imgPath": "/public/images/place-karelia.jpg",
       "additionalInfo": "Karelia is famous for its picturesque lakes and dense forests.",
       "aboutMe": [
         "Karelia is the land of a thousand lakes and pristine forests. Here you can enjoy solitude and the silence of nature.",
@@ -183,7 +183,7 @@
     {
       "id": "6",
       "name": "Winter Baikal",
-      "imgPath": "/public/sprint-3-images/place-winter-baikal.jpg",
+      "imgPath": "/public/images/place-winter-baikal.jpg",
       "additionalInfo": "Winter Baikal is a magical place with icy landscapes.",
       "aboutMe": [
         "In winter, Baikal turns into a true icy world. The transparent ice allows you to see the lake bottom several meters down.",
@@ -198,7 +198,7 @@
     {
       "id": "7",
       "name": "Sochi",
-      "imgPath": "/public/sprint-3-images/photo-grid-sochi.jpg",
+      "imgPath": "/public/images/photo-grid-sochi.jpg",
       "additionalInfo": "Sochi is a resort city with a mild climate and picturesque landscapes.",
       "aboutMe": [
         "Sochi is not just the sea and beaches. There are majestic Caucasus Mountains, hot springs, and nature reserves with unique flora and fauna.",
@@ -213,7 +213,7 @@
     {
       "id": "132",
       "name": "개가 끄는 기차",
-      "imgPath": "/public/sprint-3-images/cover-trains.jpg",
+      "imgPath": "/public/images/cover-trains.jpg",
       "additionalInfo": "전기 기차로 수도에서 바이칼까지 여행.",
       "aboutMe": [
         "기차는 가장 인기 있는 교통 수단 중 하나입니다. 그들의 리드미컬한 움직임은 매혹적이며 차분함을 줍니다.",
@@ -228,7 +228,7 @@
     {
       "id": "232",
       "name": "쿠로니안 스핏",
-      "imgPath": "/public/sprint-3-images/place-kosa.jpg",
+      "imgPath": "/public/images/place-kosa.jpg",
       "additionalInfo": "그림 같은 풍경으로 유명한 쿠로니안 스핏의 숨막히는 전망.",
       "aboutMe": [
         "여기, 숲과 모래 언덕 사이에서 두 개의 수평선을 볼 수 있습니다 — 한쪽은 평화로운 쿠로니안 석호이고 다른 한쪽은 파도가 일렁이는 발트해입니다. 러시아의 이 작은 자연 지역은 독특한 경관을 자랑합니다.",
@@ -243,7 +243,7 @@
     {
       "id": "1",
       "name": "콜라 반도",
-      "imgPath": "/public/sprint-3-images/place-kolsky.jpg",
+      "imgPath": "/public/images/place-kolsky.jpg",
       "additionalInfo": "콜라 반도는 그 북극적인 풍경으로 인상 깊습니다.",
       "aboutMe": [
         "거의 전 지역이 북극권을 넘어 있습니다. 사미족의 툰드라, 남쪽의 타이가와 북쪽의 바렌츠 해는 북극을 가장한 아틱 오션입니다.",
@@ -258,7 +258,7 @@
     {
       "id": "4",
       "name": "알타이",
-      "imgPath": "/public/sprint-3-images/place-altai.jpg",
+      "imgPath": "/public/images/place-altai.jpg",
       "additionalInfo": "알타이는 그 산과 풍부한 자연 다양성으로 유명합니다.",
       "aboutMe": [
         "알타이는 러시아에서 가장 아름다운 장소 중 하나입니다. 주로 산 때문입니다: 산맥을 따라 차를 타고 가면 소나무가 덮인 경사면과 산악 강, 호수를 볼 수 있습니다. 그리고 자동차 창문을 열면 이곳의 보이지 않는 경이로움 — 바로 산 공기를 경험할 수 있습니다.",
@@ -273,7 +273,7 @@
     {
       "id": "5",
       "name": "카렐리아",
-      "imgPath": "/public/sprint-3-images/place-karelia.jpg",
+      "imgPath": "/public/images/place-karelia.jpg",
       "additionalInfo": "카렐리아는 그 그림 같은 호수와 울창한 숲으로 유명합니다.",
       "aboutMe": [
         "카렐리아는 천 개의 호수와 원시적인 숲이 있는 땅입니다. 이곳에서는 고요함과 자연의 침묵을 즐길 수 있습니다.",
@@ -288,7 +288,7 @@
     {
       "id": "6",
       "name": "겨울 바이칼",
-      "imgPath": "/public/sprint-3-images/place-winter-baikal.jpg",
+      "imgPath": "/public/images/place-winter-baikal.jpg",
       "additionalInfo": "겨울의 바이칼은 얼음 풍경으로 마법 같은 장소입니다.",
       "aboutMe": [
         "겨울에는 바이칼이 진정한 얼음의 세계로 변합니다. 투명한 얼음 덕분에 호수 바닥을 몇 미터나 아래에서 볼 수 있습니다.",
@@ -303,7 +303,7 @@
     {
       "id": "7",
       "name": "소치",
-      "imgPath": "/public/sprint-3-images/photo-grid-sochi.jpg",
+      "imgPath": "/public/images/photo-grid-sochi.jpg",
       "additionalInfo": "소치는 온화한 기후와 그림 같은 풍경을 자랑하는 리조트 도시입니다.",
       "aboutMe": [
         "소치는 바다와 해변만이 아닙니다. 여기에는 장엄한 카프카스 산맥, 온천, 그리고 독특한 식물과 동물들이 살아있는 자연 보호 구역이 있습니다.",

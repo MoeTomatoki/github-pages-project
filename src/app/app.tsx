@@ -5,7 +5,7 @@ import { MainPage } from "../pages/main/index";
 import { AboutPage } from "../pages/about/index";
 import Header from "../widgets/header";
 import Footer from "../widgets/footer";
-import "../shared/localization/i18n";
+import "../shared/i18n/i18n";
 
 const queryClient = new QueryClient();
 

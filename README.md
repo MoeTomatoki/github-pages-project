@@ -1,50 +1,151 @@
-# React + TypeScript + Vite
+# Тур по России
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Краткое описание проекта.
 
-Currently, two official plugins are available:
+> Это веб-приложение для управления задачами, построенное с использованием фреймворка React. Архитектура представляет собой подобие Feature-Sliced Design (FSD). Кроме информационной составляющей проект включает в себя модальные окна, реализацию черной/белой темы и поддержку интернационализации на трех языках.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Оглавление
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Особенности
+2. Технологии
+3. Структура проекта
+4. Установка и запуск
+5. Структура проекта
+6. Детальная проекта
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+## Особенности
+
+- **Модальные окна:** Реализованы с использованием `createPortal` для улучшения производительности и доступности.
+- **Уведомления:** Всплывающие уведомления для информирования пользователя о действиях.
+- **Интернационализация:** Поддержка нескольких языков с помощью `react-i18next`.
+- **Валидация данных:** Форматирование телефонных номеров с использованием `google-libphonenumber`.
+- **Запрос данных**: В качестве имитации простого сервера был выбран `json-server`. Реализована пагинация на странице для удобного отображения большого количества данных.
+- **Хранение данных**: Использование стейт-менеджера `tanstack-query` (он же `react-query`) для кэширования и управления результатами асинхронных запросов.
+- **Стилизация**: Приложение стилизовано с помощью `Tailwind CSS`, что обеспечивает быструю разработку и поддержку. Реализована поддержка тёмной и светлой темы.
+- **Форматирование кода**: Единый стиль кода обеспечивается с помощью `Prettier`. Настроены правила для автоматического форматирования.
+- **Маршрутизация**: Навигация между страницами реализована с использованием `react-router-dom`. Поддержка вложенных маршрутов и динамических параметров.
+- **Анимации**: Плавные анимации и переходы реализованы с помощью библиотеки `framer-motion`.
+- **Feature-Sliced Design:** Чёткая структура проекта для улучшения поддерживаемости и масштабируемости.
+
+---
+
+## Технологии
+
+- **Языки и библиотеки:**
+
+  - [React](https://reactjs.org/) — библиотека для построения пользовательских интерфейсов.
+  - [TypeScript](https://www.typescriptlang.org/) — язык программирования для добавления статической типизации.
+  - [react-i18next](https://react.i18next.com/) — библиотека для интернационализации и локализации.
+  - [google-libphonenumber](https://www.npmjs.com/package/google-libphonenumber) — библиотека для форматирования и валидации телефонных номеров.
+  - [react-router-dom](https://reactrouter.com/) — библиотека для маршрутизации в React-приложениях.
+  - [tanstack-query (react-query)](https://tanstack.com/query/latest) — библиотека для управления асинхронными запросами и кэшированием данных.
+  - [json-server](https://www.npmjs.com/package/json-server) — имитация REST API для разработки и тестирования.
+  - [framer-motion](https://www.framer.com/motion/) — библиотека для создания анимаций и плавных переходов.
+
+- **Стилизация:**
+
+  - [Tailwind CSS](https://tailwindcss.com/) — утилитарный CSS-фреймворк для быстрой разработки интерфейсов.
+  - Поддержка тёмной и светлой темы с использованием Tailwind CSS.
+
+- **Инструменты:**
+  - [Vite](https://vitejs.dev/) — быстрый инструмент для сборки и разработки.
+  - [ESLint](https://eslint.org/) — линтер для анализа и улучшения качества кода.
+  - [Prettier](https://prettier.io/) — инструмент для автоматического форматирования кода.
+  - [npm](https://www.npmjs.com/) — менеджер пакетов для управления зависимостями.
+
+---
+
+## Установка и запуск
+
+1. **Клонируйте репозиторий:**
+   ```bash
+   git clone https://github.com/MoeTomatoki/russian-tour-landing.git
+   ```
+2. **Установите зависимости:**
+   ```bash
+   npm i или npm install
+   ```
+3. **Запустите проект в режиме разработки:**
+   ```bash
+   npm run dev
+   ```
+4. **Запуск сервера для получения результатов запросов**
+   ```bash
+   npm run serv
+   ```
+
+---
+
+## Структура проекта
+
+Проект организован по методологии **Feature-Sliced Design (FSD)**. Основные слои:
+
+```
+/src
+|-- /app                # Главные точки входа (App.tsx, main.tsx)
+|-- /pages              # Страницы приложения (например, MainPage, AboutPage)
+|-- /features           # Бизнес-логика (API, вынесенная логика contact-form)
+|-- /widgets            # Переиспользуемые компоненты с логикой (модальные окна, уведомления, кнопки и колеса загрузки)
+|-- /shared             # Общие ресурсы (SVG-иконки, UI-компоненты, локализация, типы)
+/public                 # Статические ресурсы (изображения, шрифты, ТЗ, иконка страницы)
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Детальная структура:
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
+```
+/src
+|-- /app
+|   |-- app.tsx         # Корневой компонент приложения
+|   |-- main.tsx        # Точка входа
+|   |-- index.css       # Настройки Tailwind и глобальные стили
+|
+|-- /pages
+|   |-- /main
+|   |   |-- main-page.tsx       # Главная страница
+|   |   |-- gallery.tsx         # Layout для картинок и кнопок
+|   |   |-- pagination-dots.tsx # Переключающие кнопки
+|   |   |-- view-carousel.tsx   # Отображение картинки
+|   |   |-- use-carousel.ts     # Вынесенная логика работы карусели
+|   |-- /about
+|       |-- about-page.tsx      # Страница "О нас"
+|       |-- error-page.tsx      # Страница "О нас", если произошла ошибка при выполнении запроса
+|
+|-- /features
+|   |-- /contact-form
+|   |   |-- ContactForm.tsx     # Форма для связи
+|   |-- /data-fetch
+|       |-- /api
+|       |   |-- db.json         # База данных для работы сервера
+|       |-- /hooks
+|           |-- fetchData.ts    # Методы асинхронных запросов
+|
+|-- /widgets
+|   |-- /header
+|   |   |-- index.tsx           # Хедер приложения, вмонтированный на уровень приложения (app.tsx)
+|   |   |-- theme.ts            # Вынесенная работа с темами
+|   |-- /footer
+|   |   |-- index.tsx           # Футер приложения, вмонтированный на уровень приложения (app.tsx)
+|   |-- /modal
+|       |-- index.tsx           # Отображение модального окна, без наполнения
+|
+|-- /shared
+|   |-- /ui
+|   |   |-- button.tsx          # Переиспользуемый компонент кнопки
+|   |   |-- loader.tsx          # Переиспользуемый компонент колеса загрузки
+|   |   |-- notification.tsx    # Переиспользуемый компонент уведомления
+|   |   |-- shadow-edges.tsx    # Переиспользуемый компонент затемнений по бокам
+|   |-- /icons
+|   |   |-- *-icon.tsx          # Иконки
+|   |-- /types
+|   |   |-- *.ts                # Общие типы
+|   |   |-- icon-props.ts       # Тип для передаваемых пропсов в иконках
+|   |-- /localization
+|       |-- i18n.js             # Локализация отображаемого текста на сайте
+|
+|-- /public
+    |-- ...                     # Статические ресурсы
 ```

@@ -1,80 +1,31 @@
 import { useState, useId } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  PhoneNumberUtil,
-  PhoneNumberFormat,
-  RegionCode,
-} from "google-libphonenumber";
 
 import { ButtonUI } from "../../shared/ui";
+import { FormState } from "../../shared/types/form-state";
+import { useHandles } from "./hooks/use-handles";
+import { useFormSubmit } from "./hooks/use-form-submit";
 
-type ContactFormProps = {
+type Props = {
   onSubmit: (data: string) => void;
   onClose: () => void;
 };
 
-type FormState = {
-  category: string;
-  contact: string;
-  description: string;
-};
-
-export const ContactForm = ({ onSubmit, onClose }: ContactFormProps) => {
-  const [formState, setFormState] = useState<FormState>({
-    category: "EM",
-    contact: "",
-    description: "",
-  });
-  const { category, contact, description } = formState;
+export const ContactForm = ({ onSubmit, onClose }: Props) => {
   const { t } = useTranslation();
   const forEmail = useId();
   const forPhone = useId();
   const forCategory = useId();
   const forDescription = useId();
 
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFormState((prevState) => ({
-      ...prevState,
-      category: e.target.value,
-      contact: "",
-    }));
-  };
-
-  const handleContactChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormState((prevState) => ({
-      ...prevState,
-      contact: e.target.value,
-    }));
-  };
-
-  const handleDescriptionChange = (
-    e: React.ChangeEvent<HTMLTextAreaElement>,
-  ) => {
-    setFormState((prevState) => ({
-      ...prevState,
-      description: e.target.value,
-    }));
-  };
-
-  function formatPhoneNumber(number: string, countryCode: RegionCode) {
-    const phoneUtil = PhoneNumberUtil.getInstance();
-    try {
-      const phoneNumber = phoneUtil.parseAndKeepRawInput(number, countryCode);
-      return phoneUtil.format(phoneNumber, PhoneNumberFormat.INTERNATIONAL);
-    } catch (error) {
-      console.error("Ошибка при форматировании номера:", error);
-      return `Ошибка при форматировании номера: ${error}`;
-    }
-  }
-
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    const formattedData =
-      category === "PH" ? formatPhoneNumber(contact, "RU") : contact;
-    const dataLog = `${formattedData || contact}: ${description}`;
-    onSubmit(dataLog);
-    onClose();
-  };
+  const [formState, setFormState] = useState<FormState>({
+    category: "EM",
+    contact: "",
+    description: "",
+  });
+  const { category, contact, description } = formState;
+  const {handleCategoryChange, handleContactChange, handleDescriptionChange} = useHandles(setFormState);
+  const { handleSubmit } = useFormSubmit({ formState, onSubmit, onClose });
 
   return (
     <form className="space-y-4" action="#">
