@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { BurgerIcon } from "../../../shared/icons";
+import { BurgerIcon } from "@shared/icons";
 
 type Props = {
   isMenuOpen: boolean;

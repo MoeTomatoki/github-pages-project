@@ -5,24 +5,18 @@ import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
-import { ObjFromData } from "../../shared/types/data-from-server";
-import { fetchDataApi } from "../../features/data-fetch/api/fetchData";
-import { Loader, Notification } from "../../shared/ui";
-import { ButtonUI } from "../../shared/ui";
+import { ObjFromData } from "@shared/types/data-from-server";
+import { fetchDataApi } from "@features/data-fetch/api/fetchData";
+import { Loader } from "@shared/ui";
+import { ButtonUI } from "@shared/ui";
 import { ErrorPage } from "./";
-import Modal from "../../widgets/modal";
+import Modal from "@widgets/modal";
 
 export default function AboutPage() {
   const { index } = useLocation().state || "-1";
   const { t, i18n } = useTranslation();
   const [page, setPage] = useState<number>(Number(index));
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isNotificationVisible, setIsNotificationVisible] = useState(false);
-
-  const showNotification = () => {
-    setIsNotificationVisible(true);
-    setTimeout(() => setIsNotificationVisible(false), 3000);
-  };
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const {
     data: dataItem,
@@ -125,11 +119,7 @@ export default function AboutPage() {
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        showNotification={showNotification}
-      />
-      <Notification
-        isVisible={isNotificationVisible}
-        message="Ваш запрос был успешно отправлен!"
+        isContact
       />
     </motion.div>
   );

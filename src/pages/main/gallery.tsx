@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 import { UseQueryResult } from "@tanstack/react-query";
 
 import { PaginationDots, useCarousel, ViewCarousel } from "./";
-import { Data } from "../../shared/types/data-from-server";
-import { Loader } from "../../shared/ui";
+import { Data } from "@shared/types/data-from-server";
+import { Loader } from "@shared/ui";
 
 type GalleryProps = {
   fromFetchQuery: UseQueryResult<Data, Error>;

@@ -1,13 +1,8 @@
 type Props = {
     onClose: () => void;
-    showNotification: () => void;
 };
 
-export const useHandle = ({showNotification, onClose}: Props) => {
-    const handleSubmit = (data: string) => {
-        console.log(data);
-        showNotification();
-    };
+export const useEscape = ({onClose}: Props) => {
 
     const handleEscape = (e: KeyboardEvent) => {
         if (e.key === "Escape") {
@@ -18,5 +13,5 @@ export const useHandle = ({showNotification, onClose}: Props) => {
     document.addEventListener("keydown", handleEscape);
     document.removeEventListener("keydown", handleEscape);
 
-    return { handleSubmit, handleEscape }
+    return { handleEscape }
 }

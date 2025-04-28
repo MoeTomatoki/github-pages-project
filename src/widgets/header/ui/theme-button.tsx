@@ -1,5 +1,5 @@
-import { MoonIcon, SunIcon } from "../../../shared/icons/";
-import { ButtonUI } from "../../../shared/ui/";
+import { MoonIcon, SunIcon } from "@shared/icons/";
+import { ButtonUI } from "@shared/ui/";
 import { useSwitchTheme } from "../hooks/use-switch-theme";
 
 export function ThemeButton() {

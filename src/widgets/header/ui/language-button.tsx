@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { Dispatch, SetStateAction } from "react";
 
-import { ButtonUI } from "../../../shared/ui/";
+import { ButtonUI } from "@shared/ui/";
 import { useLanguage } from "../hooks/use-language";
 
 type Props = {

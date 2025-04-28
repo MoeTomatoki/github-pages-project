@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { FormState } from "../../../shared/types/form-state";
+import { FormState } from "@shared/types/form-state";
 
 export const useHandles = (setFormState: Dispatch<SetStateAction<FormState>>) => {
     const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

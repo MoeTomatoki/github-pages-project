@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { CrossIcon } from "../../../shared/icons";
+import { CrossIcon } from "@shared/icons";
 
 export function CloseButton({onClose}: {onClose: () => void}) {
     const { t } = useTranslation();

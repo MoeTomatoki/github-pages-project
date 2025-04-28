@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { fetchDataApi } from "../../features/data-fetch/api/fetchData";
+import { fetchDataApi } from "@features/data-fetch/api/fetchData";
 import { Gallery } from "./";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";

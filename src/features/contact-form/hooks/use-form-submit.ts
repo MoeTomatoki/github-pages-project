@@ -1,5 +1,5 @@
-import { FormState } from "../../../shared/types/form-state";
-import { formatPhoneNumber } from "../../../shared/lib/format-phone";
+import { FormState } from "@shared/types/form-state";
+import { formatPhoneNumber } from "@shared/lib/format-phone";
 
 type Props = {
     formState: FormState;

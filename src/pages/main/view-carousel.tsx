@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import { UseQueryResult } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
-import { Data } from "../../shared/types/data-from-server";
-import { Loader, ShadowEdges } from "../../shared/ui/index";
+import { Data } from "@shared/types/data-from-server";
+import { Loader, ShadowEdges } from "@shared/ui/index";
 
 type CarouselProps = {
   carouselIndex: number;

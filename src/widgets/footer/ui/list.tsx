@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { IconWrapper } from "./icon-wrapper";
-import { FooterList } from "../../../shared/types/footer-list";
+import { FooterList } from "@shared/types/footer-list";
 
 export function List({ LIST_ELEMENTS }: { LIST_ELEMENTS: FooterList }) {
   const { t } = useTranslation();

@@ -9,6 +9,11 @@ import ScheduleIcon from "./schedule-icon";
 import TravelIcon from "./travel-icon";
 import CrossIcon from "./cross-icon";
 import CorrectIcon from "./correct-icon";
+import LoginIcon from "./login-icon";
+import LogoutIcon from "./logout-icon";
+import ErrorIcon from "./error-icon";
+import WarningIcon from "./warning-icon";
+import InfoIcon from "./info-icon";
 
 export {
   LogoIcon,
@@ -22,4 +27,9 @@ export {
   TravelIcon,
   CrossIcon,
   CorrectIcon,
+  LoginIcon,
+  LogoutIcon,
+  InfoIcon,
+  ErrorIcon,
+  WarningIcon,
 };

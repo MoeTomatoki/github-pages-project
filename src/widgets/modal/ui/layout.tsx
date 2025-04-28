@@ -1,13 +1,14 @@
 import { useTranslation } from "react-i18next";
 
 type Props = {
-    contactForm: React.ReactNode;
+    contentForm: React.ReactNode;
     closeButton: React.ReactNode;
+    isContact?:boolean
     onClose: () => void;
     handleEscape: (e: KeyboardEvent) => void;
 };
 
-export function Layout({ contactForm, closeButton, onClose, handleEscape }: Props) {
+export function Layout({ contentForm, closeButton, isContact, onClose, handleEscape }: Props) {
     const { t } = useTranslation();
 
     return (
@@ -23,12 +24,12 @@ export function Layout({ contactForm, closeButton, onClose, handleEscape }: Prop
                 <div className="relative rounded-lg shadow-sm bg-neutral-100 dark:bg-neutral-800">
                     <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-neutral-700 border-neutral-200">
                         <h3 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100">
-                            {t("Связаться с нами")}
+                            {isContact ? t("Связаться с нами"): "Регистрация"}
                         </h3>
                         {closeButton}
                     </div>
                     <div className="p-4 md:p-5">
-                        {contactForm}
+                        {contentForm}
                     </div>
                 </div>
             </div>

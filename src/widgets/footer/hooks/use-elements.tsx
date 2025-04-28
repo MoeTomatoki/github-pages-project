@@ -4,7 +4,7 @@ import {
   WeatherIcon,
   ScheduleIcon,
   TravelIcon,
-} from "../../../shared/icons";
+} from "@shared/icons";
 
 const LIST_ELEMENTS = {
   Карты: <MapIcon className="w-5 h-5" />,

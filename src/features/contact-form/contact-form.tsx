@@ -1,8 +1,8 @@
 import { useState, useId } from "react";
 import { useTranslation } from "react-i18next";
 
-import { ButtonUI } from "../../shared/ui";
-import { FormState } from "../../shared/types/form-state";
+import { ButtonUI } from "@shared/ui";
+import { FormState } from "@shared/types/form-state";
 import { useHandles } from "./hooks/use-handles";
 import { useFormSubmit } from "./hooks/use-form-submit";
 

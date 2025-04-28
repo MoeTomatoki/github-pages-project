@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Logo } from "../ui/logo";
 
 type Props = {
+  logButton: ReactNode;
   themeButton: ReactNode;
   languageButton: ReactNode;
   languageList: ReactNode;
@@ -12,6 +13,7 @@ type Props = {
 };
 
 export function Layout({
+  logButton,
   themeButton,
   languageButton,
   languageList,
@@ -22,6 +24,7 @@ export function Layout({
     <header className="flex items-center px-10 text-neutral-800 dark:text-neutral-100">
       <Logo />
       <div className="hidden md:flex gap-4 ml-auto text-xl">
+        {logButton}
         {themeButton}
         {languageButton}
       </div>
@@ -33,9 +36,10 @@ export function Layout({
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="flex md:hidden gap-4 absolute top-16 right-4 p-4 rounded-lg shadow-lg bg-neutral-100 dark:bg-neutral-800"
+            className="flex md:hidden gap-4 absolute top-16 right-4 p-4 rounded-lg shadow-lg bg-neutral-100 dark:bg-neutral-800 z-100"
           >
             <div className="flex flex-col items-center gap-4 text-xl">
+              {logButton}
               {themeButton}
               {languageList}
             </div>
