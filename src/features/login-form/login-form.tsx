@@ -7,31 +7,39 @@ import { useHandle } from "./hooks/use-handle";
 import { UserDataRegister } from "@shared/types/user-data";
 
 type Props = {
-  onSubmit: () => void;
   onClose: () => void;
 };
 
-export const LoginForm = ({ onSubmit, onClose }: Props) => {
+export const LoginForm = ({ onClose }: Props) => {
   const { t } = useTranslation();
 
   const [formData, setFormData] = useState<UserDataRegister>({
-    username: '',
-    email: '',
-    password: ''
+    username: "",
+    email: "",
+    password: "",
   });
   const [isLogin, setIsLogin] = useState<boolean>(true);
 
   const { showNotification } = useNotification();
 
-  const { handleChange, handleSubmit } = useHandle({onSubmit, onClose, showNotification, formData, setFormData, isLogin});
+  const { handleChange, handleSubmit } = useHandle({
+    onClose,
+    showNotification,
+    formData,
+    setFormData,
+    isLogin,
+  });
 
   return (
     <div className="bg-neutral-100 dark:bg-neutral-800 rounded-lg w-full max-w-md mx-auto">
       <form onSubmit={handleSubmit} className="space-y-4">
         {!isLogin && (
           <div>
-            <label htmlFor="username" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
-              {t('Username')}
+            <label
+              htmlFor="username"
+              className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1"
+            >
+              {t("Имя пользователя")}
             </label>
             <input
               id="username"
@@ -46,8 +54,11 @@ export const LoginForm = ({ onSubmit, onClose }: Props) => {
         )}
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
-            {t('Почта')}
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1"
+          >
+            {t("Почта")}
           </label>
           <input
             id="email"
@@ -62,8 +73,11 @@ export const LoginForm = ({ onSubmit, onClose }: Props) => {
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
-            {t('Password')}
+          <label
+            htmlFor="password"
+            className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1"
+          >
+            {t("Password")}
           </label>
           <input
             id="password"
@@ -81,7 +95,7 @@ export const LoginForm = ({ onSubmit, onClose }: Props) => {
           type="submit"
           className="w-full py-2 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-          {isLogin ? t('Sign in') : t('Register')}
+          {isLogin ? t("Вход") : t("Регистрация")}
         </ButtonUI>
 
         <div className="flex items-center justify-center mt-4">
@@ -90,7 +104,9 @@ export const LoginForm = ({ onSubmit, onClose }: Props) => {
             onClick={() => setIsLogin(!isLogin)}
             className="text-sm text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300 font-medium"
           >
-            {isLogin ? t('Need an account? Register') : t('Already have an account? Sign in')}
+            {isLogin
+              ? t("Нет аккаунта? Зарегистрируйтесь!")
+              : t("Уже есть аккаунт? Войдите!")}
           </button>
         </div>
       </form>

@@ -12,7 +12,13 @@ export default function InfoIcon({
       height="48"
       viewBox="0 0 48 48"
     >
-      <g fill="none" stroke={currentColor} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+      <g
+        fill="none"
+        stroke={currentColor}
+        strokeWidth="4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <circle cx="24" cy="24" r="20" />
         <path d="M24 18v2" />
         <path d="M24 24v10" />

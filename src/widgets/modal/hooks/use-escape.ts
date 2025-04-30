@@ -1,17 +1,16 @@
 type Props = {
-    onClose: () => void;
+  onClose: () => void;
 };
 
-export const useEscape = ({onClose}: Props) => {
+export const useEscape = ({ onClose }: Props) => {
+  const handleEscape = (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      onClose();
+    }
+  };
 
-    const handleEscape = (e: KeyboardEvent) => {
-        if (e.key === "Escape") {
-            onClose();
-        }
-    };
+  document.addEventListener("keydown", handleEscape);
+  document.removeEventListener("keydown", handleEscape);
 
-    document.addEventListener("keydown", handleEscape);
-    document.removeEventListener("keydown", handleEscape);
-
-    return { handleEscape }
-}
+  return { handleEscape };
+};

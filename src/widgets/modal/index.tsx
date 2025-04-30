@@ -9,35 +9,26 @@ import { Layout } from "./ui/layout";
 
 type ModalProps = {
   isOpen: boolean;
-  isContact?: boolean
+  isContact?: boolean;
   onClose: () => void;
 };
 
-export default function Modal({
-  isOpen,
-  isContact,
-  onClose,
-}: ModalProps) {
-  const { handleSubmit} = useSubmit();
+export default function Modal({ isOpen, isContact, onClose }: ModalProps) {
+  const { handleSubmit } = useSubmit();
   const { handleEscape } = useEscape({ onClose });
 
   if (!isOpen) return null;
 
   return createPortal(
     <Layout
-      contentForm={isContact
-        ? <ContactForm
-          onSubmit={handleSubmit}
-          onClose={onClose}
-        />
-        : <LoginForm
-          onSubmit={handleSubmit}
-          onClose={onClose}
-        />
+      contentForm={
+        isContact ? (
+          <ContactForm onSubmit={handleSubmit} onClose={onClose} />
+        ) : (
+          <LoginForm onClose={onClose} />
+        )
       }
-      closeButton={<CloseButton
-        onClose={onClose}
-      />}
+      closeButton={<CloseButton onClose={onClose} />}
       onClose={onClose}
       handleEscape={handleEscape}
       isContact={isContact}

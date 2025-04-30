@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { LogoIcon } from "@shared/icons";
+import { LogoIcon } from "../../../shared/icons";
 
 export function Logo() {
   return (

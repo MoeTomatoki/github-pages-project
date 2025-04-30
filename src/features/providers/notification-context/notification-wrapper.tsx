@@ -5,9 +5,10 @@ export const NotificationWrapper = () => {
   const { notification } = useNotification();
 
   return (
-    <Notification 
-      isVisible={notification.isVisible} 
-      message={notification.message} 
+    <Notification
+      isVisible={notification.isVisible}
+      message={notification.message}
+      type={notification.type}
     />
   );
 };

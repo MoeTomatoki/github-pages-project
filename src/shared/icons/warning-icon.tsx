@@ -12,7 +12,13 @@ export default function WarningIcon({
       height="48"
       viewBox="0 0 48 48"
     >
-      <g fill="none" stroke={currentColor} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
+      <g
+        fill="none"
+        stroke={currentColor}
+        strokeWidth="4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <path d="M24 4L2 44h44L24 4z" />
         <path d="M24 18v10" />
         <circle cx="24" cy="34" r="2" fill={currentColor} />

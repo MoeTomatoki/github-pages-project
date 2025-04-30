@@ -24,7 +24,8 @@ export const ContactForm = ({ onSubmit, onClose }: Props) => {
     description: "",
   });
   const { category, contact, description } = formState;
-  const {handleCategoryChange, handleContactChange, handleDescriptionChange} = useHandles(setFormState);
+  const { handleCategoryChange, handleContactChange, handleDescriptionChange } =
+    useHandles(setFormState);
   const { handleSubmit } = useFormSubmit({ formState, onSubmit, onClose });
 
   return (

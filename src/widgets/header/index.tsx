@@ -19,23 +19,26 @@ export default function Header() {
   const handleClick = useCallback(() => setIsModalOpen(true), []);
   const handleClose = useCallback(() => setIsModalOpen(false), []);
 
-  const memoizedButtons = useMemo(() => ({
-    themeButton: <ThemeButton />,
-    languageButton: (
-      <LanguageButton 
-        key="lang-btn" 
-        language={language} 
-        setLanguage={setLanguage} 
-      />
-    ),
-    toggleButton: (
-      <ToogleButton 
-        key="toggle-btn"
-        isMenuOpen={isMenuOpen} 
-        setIsMenuOpen={setIsMenuOpen} 
-      />
-    ),
-  }), [language, isMenuOpen]);
+  const memoizedButtons = useMemo(
+    () => ({
+      themeButton: <ThemeButton />,
+      languageButton: (
+        <LanguageButton
+          key="lang-btn"
+          language={language}
+          setLanguage={setLanguage}
+        />
+      ),
+      toggleButton: (
+        <ToogleButton
+          key="toggle-btn"
+          isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
+        />
+      ),
+    }),
+    [language, isMenuOpen],
+  );
 
   return (
     <>
@@ -47,7 +50,7 @@ export default function Header() {
         toggleButton={memoizedButtons.toggleButton}
         languageList={
           <>
-            {['RUS', 'ENG', 'KOR'].map(lang => (
+            {["RUS", "ENG", "KOR"].map((lang) => (
               <LanguageButton
                 key={lang}
                 language={language}
