@@ -7,6 +7,8 @@ import { LanguageButton } from "./ui/language-button";
 import { ToogleButton } from "./ui/toggle-button";
 import { Layout } from "./ui/layout";
 import Modal from "../modal";
+import { Profile } from "./ui/profile";
+import { useAuth } from "@features/providers/auth-context/auth-context";
 
 const userLanguage = localStorage.getItem("language");
 
@@ -15,6 +17,7 @@ export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [language, setLanguage] = useState(userLanguage ?? i18n.language);
+  const { user } = useAuth();
 
   const handleClick = useCallback(() => setIsModalOpen(true), []);
   const handleClose = useCallback(() => setIsModalOpen(false), []);
@@ -29,6 +32,7 @@ export default function Header() {
           setLanguage={setLanguage}
         />
       ),
+      profile: <Profile/>,
       toggleButton: (
         <ToogleButton
           key="toggle-btn"
@@ -47,6 +51,7 @@ export default function Header() {
         logButton={<LogButton onClick={handleClick} />}
         themeButton={memoizedButtons.themeButton}
         languageButton={memoizedButtons.languageButton}
+        profileComponent={memoizedButtons.profile}
         toggleButton={memoizedButtons.toggleButton}
         languageList={
           <>
@@ -62,6 +67,7 @@ export default function Header() {
             ))}
           </>
         }
+        isLogin={!!user}
       />
       <Modal isOpen={isModalOpen} onClose={handleClose} />
     </>

@@ -13,7 +13,7 @@ export function ToogleButton({ isMenuOpen, setIsMenuOpen }: Props) {
   return (
     <button
       onClick={toggleMenu}
-      className="flex ml-auto md:hidden focus:outline-none"
+      className="flex ml-auto items-center md:hidden focus:outline-none"
     >
       <BurgerIcon className="h-6 w-6 text-neutral-200 dark:text-neutral-200" />
     </button>

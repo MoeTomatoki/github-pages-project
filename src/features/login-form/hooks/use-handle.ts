@@ -1,14 +1,20 @@
 import { Dispatch, SetStateAction } from "react";
 import { useTranslation } from "react-i18next";
 
-import { UserDataRegister } from "@shared/types/user-data";
+import { UserDataLogin, UserDataRegister } from "@shared/types/user-data";
 import { useAuth } from "@features/providers/auth-context/auth-context";
 import {
   NotificationOptions,
   NotificationType,
 } from "@shared/types/notification";
+import { useMutation } from "@tanstack/react-query";
 
 type AuthResponse = {
+  user: { 
+    id: string;
+    email: string;
+    username: string;
+  };
   access_token: string;
   message?: string;
 };
@@ -34,6 +40,41 @@ export const useHandle = ({
   const { t } = useTranslation();
   const { login } = useAuth();
 
+  const authMutation = useMutation({
+    mutationFn: async (requestBody: UserDataRegister | UserDataLogin) => {
+      const endpoint = isLogin ? "login" : "register";
+      const response = await fetch(`http://localhost:3000/auth/${endpoint}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
+      
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || "Ошибка соединения с сервером");
+      }
+      
+      return response.json();
+    },
+    onSuccess: (data: AuthResponse) => {
+      showNotification(t("Успешно! Вы зарегистрировались и вошли!"));
+      login({
+        username: data.user.username,
+        email: formData.email,
+        token: data.access_token, 
+      });
+      onClose();
+    },
+    onError: (error: Error) => {
+      showNotification(t(error.message) || t("Ошибка входа!"), {
+        type: "error",
+        duration: 5000,
+      });
+    }
+  });
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -46,51 +87,22 @@ export const useHandle = ({
     e.preventDefault();
 
     if (!isLogin && !formData.username) {
-      showNotification(t("Требуется пароль для регистрации", "warning"));
+      showNotification(t("Требуется имя пользователя для регистрации", "warning"));
       return;
     }
 
-    const endpoint = isLogin ? "login" : "register";
-    const url = `http://localhost:3000/auth/${endpoint}`;
-
-    try {
-      const requestBody = isLogin
-        ? { email: formData.email, password: formData.password }
-        : formData;
-
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
-
-      const data: AuthResponse = await response.json();
-
-      if (response.ok) {
-        showNotification(t("Успешно! Вы зарегистрировались и вошли!"));
-        login({
-          username: formData.username,
-          email: formData.email,
-          token: data.access_token,
-        });
-        onClose();
-      } else {
-        console.log(data.message);
-        showNotification(t(data.message as string) || t("Ошибка входа!"), {
-          type: "error",
-          duration: 5000,
-        });
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      showNotification("Ошибка соединения с сервером", {
-        type: "error",
-        duration: 5000,
-      });
-    }
+    const requestBody = isLogin
+    ? { 
+      email: formData.email, 
+      password: formData.password,
+     }
+    : formData;
+    authMutation.mutate(requestBody);
   };
 
-  return { handleChange, handleSubmit };
+  return { 
+    handleChange, 
+    handleSubmit,
+    isLoading: authMutation.isPending,
+    error: authMutation.error  };
 };

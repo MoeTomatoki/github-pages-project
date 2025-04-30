@@ -14,6 +14,9 @@ import LogoutIcon from "./logout-icon";
 import ErrorIcon from "./error-icon";
 import WarningIcon from "./warning-icon";
 import InfoIcon from "./info-icon";
+import ChevronDown from "./chevron-down-icon";
+import SettingsIcon from "./settings-icon";
+import UserIcon from "./user-icon";
 
 export {
   LogoIcon,
@@ -32,4 +35,7 @@ export {
   InfoIcon,
   ErrorIcon,
   WarningIcon,
+  ChevronDown,
+  SettingsIcon,
+  UserIcon,
 };
