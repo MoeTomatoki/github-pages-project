@@ -13,6 +13,7 @@ export default defineConfig({
       "@widgets": path.resolve(__dirname, "src/widgets"),
     },
   },
+  base: '/github-pages-project/',
   build: {
     outDir: 'build',
   },
