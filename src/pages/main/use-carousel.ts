@@ -9,8 +9,8 @@ const useCarousel = ({ carouselLength }: { carouselLength: number }) => {
   const [dragging, setIsDragging] = useState<boolean>(false);
 
   const firstRender = useRef<boolean | null>(true);
-  const intervalRef = useRef<number | null>(null);
-  const clearIntervalRef = useRef<number | null>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const clearIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const dragX = useMotionValue(0);
   const dragXProgress = useMotionValue(0);
