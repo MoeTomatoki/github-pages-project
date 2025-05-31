@@ -15,7 +15,7 @@ export default defineConfig({
   },
   base: '/github-pages-project/',
   build: {
-    outDir: 'dist',
+    outDir: 'build',
     assetsDir: 'assets',
     emptyOutDir: true, 
   },
